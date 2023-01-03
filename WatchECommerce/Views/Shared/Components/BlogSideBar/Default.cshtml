@@ -1,0 +1,83 @@
+﻿@{
+    BlogSideBarViewModel model = Model;
+    var blogs = model.Blogs;
+    var categories = model.Categories;
+}
+<aside class="blog_sidebar">
+    <!--search form start-->
+    <div class="sidebar_widget search_form">
+        <form action="#">
+            <input placeholder="Search..." type="text">
+            <button type="submit"><i class="ion-ios-search-strong"></i></button>
+        </form>
+    </div>
+    <!--search form end-->
+    <!--categories start-->
+    <div class="sidebar_widget widget_categories">
+        <h3 class="widget_title">Categories</h3>
+        <ul>
+            @foreach (var category in categories)
+            {
+                <li><a asp-controller="blog" asp-action="blogsidebar" asp-route-id="@category.Id">@category.Name (@category.Blogs.Count)</a></li>
+            }
+          
+        </ul>
+    </div>
+    <!--categories end-->
+    <!--recent post start-->
+    <div class="sidebar_widget recent_post">
+        <h3 class="widget_title">Recent Posts</h3>
+        @foreach (var blog in blogs)
+        {
+            <div class="sidebar_post">
+                <div class="post_img">
+                    <a asp-controller="blog" asp-action="details" asp-route-id="@blog.Id"><img src="~/assets/img/blog/@blog.ImageUrl" alt=""></a>
+                </div>
+                <div class="post_text">
+                    <h3><a href="blog-details.html">@blog.Title</a></h3>
+                    <span>@blog.PublishTime.ToString("dd MMMM yyyy")</span>
+                </div>
+
+            </div>
+        }
+      
+       
+    </div>
+    <!--recent post end-->
+    <!--recent post start-->
+    <div class="sidebar_widget popular_post">
+        <h3 class="widget_title">Popular Posts</h3>
+        @foreach (var blog in blogs)
+        {
+            <div class="sidebar_post">
+                <div class="post_img">
+                    <a asp-controller="blog" asp-action="details" asp-route-id="@blog.Id"><img src="~/assets/img/blog/@blog.ImageUrl" alt=""></a>
+                </div>
+                <div class="post_text">
+                    <h3><a href="blog-details.html">@blog.Title</a></h3>
+                    <span>@blog.PublishTime.ToString("dd MMMM yyyy")</span>
+                </div>
+
+            </div>
+        }
+    </div>
+    <!--recent post end-->
+    <!--recent post start-->
+    <div class="sidebar_widget recent_comments">
+        <h3 class="widget_title">Recent Comments</h3>
+        <div class="sidebar_post">
+            <div class="post_img">
+                <a href="blog-details.html"><img src="~/assets/img/blog/comment.png.jpg" alt=""></a>
+            </div>
+            <div class="post_text">
+                <h3><a href="blog-details.html">Blog image post format</a></h3>
+                <span>March 3, 2018</span>
+            </div>
+
+        </div>
+      
+
+    </div>
+    <!--recent post end-->
+
+</aside>

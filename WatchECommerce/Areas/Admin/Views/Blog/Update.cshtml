@@ -1,0 +1,98 @@
+﻿@model BlogUpdateViewModel
+<section class="content">
+
+	<div class="row">
+		<div class="col-12">
+			<div class="box">
+				<div class="box-header with-border">
+					<h4 class="box-title">BLog Creating</h4>
+				</div>
+				<div class="box-body">
+					<form class="forms-sample" method="post" asp-action="update" enctype="multipart/form-data" en>
+						<div class="text-danger" asp-validation-summary="All"></div>
+						<div class="form-body">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label asp-for="Title" class="fw-700 fs-16 form-label">Main Title</label>
+										<input asp-for="Title" class="form-control" placeholder="Main Title">
+									</div>
+								</div>
+								<!--/span-->
+								<div class="col-md-6">
+									<div class="form-group">
+										<label asp-for="ShortContent" class="fw-700 fs-16 form-label">ShortContent</label>
+										<input asp-for="ShortContent" class="form-control" placeholder="Please, Enter Short Content Of Blog">
+									</div>
+								</div>
+								<!--/span-->
+							</div>
+							<!--/row-->
+							<!--/row-->
+							<!--/row-->
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label asp-for="Author" class="fw-700 fs-16 form-label">Author</label>
+										<div class="input-group">
+											<input asp-for="Author" class="form-control" placeholder="Please, Enter Author Of Blog">
+										</div>
+									</div>
+								</div>
+								<!--/span-->
+								<div class="col-md-6">
+									<div class="form-group">
+										<label asp-for="SpecifiedContent" class="fw-700 fs-16 form-label">Specified Content</label>
+										<div class="input-group">
+
+											<input asp-for="SpecifiedContent" class="form-control" placeholder="Please, Enter Specified Content Of Blog">
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-6">
+									<div class="form-group">
+										<label asp-for="MainContent" class="fw-700 fs-16 form-label">Main Content</label>
+										<div class="input-group">
+
+											<input asp-for="MainContent" class="form-control" placeholder="Please, Enter Main Content Of Blog">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label asp-for="CategoryId">Blog Categories</label>
+									<select asp-for="CategoryId" asp-items="Model.Categories" class="form-control" placeholder="Please, Select Category  of Blog"></select>
+									<span asp-validation-for="CategoryId" class="text-danger"></span>
+								</div>
+								<!--/span-->
+							</div>
+
+							<!--/row-->
+							<div class="row">
+
+								<!--/span-->
+								<div class="col-md-4">
+									<h4 class="box-title mt-20">Upload Image</h4>
+									<div class="product-img text-start">
+
+										<div class="input-group my-3">
+											<label asp-for="Image" class="input-group-text btn-primary" for="inputGroupFile01">Upload  Image</label>
+											<input asp-for="Image" type="file" class="form-control" id="inputGroupFile01">
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div class="form-actions mt-10">
+							<button type="submit" class="btn btn-primary"> <i class="fa fa-check"></i> Save</button>
+							<button type="submit" asp-controller="blog" asp-action="index" class="btn btn-danger">Cancel</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</section>
