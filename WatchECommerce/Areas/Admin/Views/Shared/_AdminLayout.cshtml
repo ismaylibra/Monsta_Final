@@ -189,8 +189,8 @@
                                     </span>
                                 </a>
                                 <ul class="treeview-menu">
-                                    <li><a href="index.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Dashboard 1</a></li>
-                                    <li><a href="index2.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Dashboard 2</a></li>
+                                    <li><a asp-controller="dashboard" asp-action="index"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Dashboard</a></li>
+                                    <li><a asp-area="default" asp-controller="home" asp-action="index"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Home Page Of Site</a></li>
                                 </ul>
                             </li>
                             <li class="treeview">
@@ -264,7 +264,7 @@
                                             </span>
                                         </a>
                                         <ul class="treeview-menu">
-                                            <li><a href="ecommerce_products.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Products</a></li>
+                                            <li><a asp-controller="product" asp-action="index"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Products</a></li>
                                             <li><a href="ecommerce_cart.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Products Cart</a></li>
                                             <li><a href="ecommerce_products_edit.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Products Edit</a></li>
                                             <li><a href="ecommerce_details.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product Details</a></li>
@@ -383,7 +383,7 @@
                             <li class="treeview">
                                 <a href="#">
                                     <i class="icon-File"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
-                                    <span>Categories</span>
+                                    <span>Categories &  Brands</span>
                                     <span class="pull-right-container">
                                         <i class="fa fa-angle-right pull-right"></i>
                                     </span>
@@ -410,10 +410,22 @@
                                             </span>
                                         </a>
                                         <ul class="treeview-menu">
-                                            <li><a href="tables_simple.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Simple tables</a></li>
-                                            <li><a href="tables_data.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Data tables</a></li>
-                                            <li><a href="tables_editable.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Editable Tables</a></li>
-                                            <li><a href="tables_color.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Table Color</a></li>
+                                            <li><a asp-controller="ProductCategory" asp-action="index"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>List Of Product Category</a></li>
+                                            <li><a asp-controller="ProductCategory" asp-action="create"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Create Product Category</a></li>
+                                           
+                                        </ul>
+                                    </li>
+                                       <li class="treeview">
+                                        <a href="#">
+                                            <i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product Brands
+                                            <span class="pull-right-container">
+                                                <i class="fa fa-angle-right pull-right"></i>
+                                            </span>
+                                        </a>
+                                        <ul class="treeview-menu">
+                                            <li><a asp-controller="ProductBrand" asp-action="index"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product Brands List </a></li>
+                                            <li><a asp-controller="ProductBrand" asp-action="create"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Add Product Brands</a></li>
+                                           
                                         </ul>
                                     </li>
                                 </ul>

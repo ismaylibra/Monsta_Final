@@ -1,0 +1,33 @@
+﻿@model ProductCategoryCreateViewModel
+<section class="content">
+
+	<div class="row">
+		<div class="col-12">
+			<div class="box">
+				<div class="box-header with-border">
+					<h4 class="box-title">Category Of Product Creating</h4>
+				</div>
+				<div class="box-body">
+					<form class="forms-sample" method="post" asp-action="create" enctype="multipart/form-data" en>
+						<div class="text-danger" asp-validation-summary="All"></div>
+						<div class="form-body">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label asp-for="Name" class="fw-700 fs-16 form-label">Category Name</label>
+										<input asp-for="Name" class="form-control" placeholder="Enter Name of Category">
+									</div>
+								</div>
+							</div>
+							<div class="form-actions mt-10">
+								<button type="submit" class="btn btn-primary"> <i class="fa fa-check"></i> Save</button>
+								<button type="button" asp-controller="slider" asp-action="index" class="btn btn-danger">Cancel</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</section>

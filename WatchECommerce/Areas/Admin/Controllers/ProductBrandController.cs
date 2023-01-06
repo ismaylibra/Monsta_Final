@@ -1,25 +1,27 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Drawing.Drawing2D;
 using Watch.Core.Entities;
 using Watch.DAL.DAL;
 using WatchECommerce.Areas.Admin.ViewModels;
 
 namespace WatchECommerce.Areas.Admin.Controllers
 {
-    public class BlogCategoryController : BaseController
+    public class ProductBrandController : BaseController
     {
         private readonly WatchDbContext _dbContext;
 
-        public BlogCategoryController(WatchDbContext dbContext)
+        public ProductBrandController(WatchDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
         public async Task<IActionResult> Index()
         {
-            var categories = await _dbContext.BlogCategories.Where(c => !c.IsDeleted).OrderByDescending(bc=>bc.Id).ToListAsync();
-            return View(categories);
+            var brands = await _dbContext.ProductBrands.Where(c => !c.IsDeleted).OrderByDescending(bc => bc.Id).ToListAsync();
+            return View(brands);
         }
+
         public IActionResult Create()
         {
             return View();
@@ -27,25 +29,25 @@ namespace WatchECommerce.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(BlogCategoryCreateViewModel model)
+        public async Task<IActionResult> Create(ProductBrandCreateViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return View();
             }
-            var existCategory = await _dbContext.BlogCategories.Where(c => !c.IsDeleted).ToListAsync();
+            var existBrand = await _dbContext.ProductBrands.Where(c => !c.IsDeleted).ToListAsync();
 
-            if (existCategory.Any(c => c.Name.ToLower().Equals(model.Name.ToLower())))
+            if (existBrand.Any(c => c.Name.ToLower().Equals(model.Name.ToLower())))
             {
                 ModelState.AddModelError("Name", "There is a category with this name..! ");
                 return View();
             }
-            var newCategory = new BlogCategory
+            var newBrand = new ProductBrand
             {
                 Name = model.Name
             };
 
-            await _dbContext.BlogCategories.AddAsync(newCategory);
+            await _dbContext.ProductBrands.AddAsync(newBrand);
             await _dbContext.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
@@ -55,20 +57,19 @@ namespace WatchECommerce.Areas.Admin.Controllers
         public async Task<IActionResult> Update(int? id)
         {
             if (id is null) return NotFound();
-            var category = await _dbContext.BlogCategories.FindAsync(id);
-            if (category.Id != id) return BadRequest();
+            var brand = await _dbContext.ProductBrands.FindAsync(id);
+            if (brand.Id != id) return BadRequest();
 
-            var existCategory = new BLogCategoryUpdateViewModel
+            var existBrand = new ProductBrandUpdateViewModel
             {
-                Name = category.Name
+                Name = brand.Name
             };
-            return View(existCategory);
+            return View(existBrand);
 
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(int? id, BLogCategoryUpdateViewModel model)
+        public async Task<IActionResult> Update(int? id, ProductBrandUpdateViewModel model)
         {
 
             if (id is null) return NotFound();
@@ -78,36 +79,36 @@ namespace WatchECommerce.Areas.Admin.Controllers
                 return View();
             }
 
-            var category = await _dbContext.BlogCategories.FindAsync(id);
+            var brand = await _dbContext.ProductBrands.FindAsync(id);
 
-            if (category is null) return NotFound();
-            var isExistName = await _dbContext.BlogCategories.AnyAsync(c => c.Name.ToLower() == model.Name.ToLower() && c.Id != id);
+            if (brand is null) return NotFound();
+            var isExistName = await _dbContext.ProductBrands.AnyAsync(c => c.Name.ToLower() == model.Name.ToLower() && c.Id != id);
 
             if (isExistName)
             {
-                ModelState.AddModelError("Name", "There is a category with this name..!");
+                ModelState.AddModelError("Name", "There is a brand with this name..!");
                 return View(model);
             }
-            category.Name = model.Name;
+            brand.Name = model.Name;
 
             await _dbContext.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
         public async Task<IActionResult> Delete(int? id)
         {
             if (id is null) return NotFound();
 
-            var category = await _dbContext.BlogCategories.FindAsync(id);
+            var brand = await _dbContext.ProductBrands.FindAsync(id);
 
-            if (category is null) return NotFound();
+            if (brand is null) return NotFound();
 
-            _dbContext.BlogCategories.Remove(category);
+            _dbContext.ProductBrands.Remove(brand);
 
             await _dbContext.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
 
         }
-
     }
 }
