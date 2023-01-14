@@ -12,6 +12,7 @@ namespace Watch.BLL.Data
         public static string SliderPath;
         public static string BannerPath;
         public static string BlogPath;
+        public static string ProductImagePath;
 
 
     }

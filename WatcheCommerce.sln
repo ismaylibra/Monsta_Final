@@ -9,7 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Watch.DAL", "Watch.DAL\Watc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Watch.BLL", "Watch.BLL\Watch.BLL.csproj", "{BC447437-43F3-4215-BF2B-AA16F363E586}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Watch.Core", "Watch.Core\Watch.Core.csproj", "{876D7344-5C01-42C9-9EC1-CA60297A8798}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Watch.Core", "Watch.Core\Watch.Core.csproj", "{876D7344-5C01-42C9-9EC1-CA60297A8798}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{32BCAB23-F1A0-4C54-BDEC-98B3D0BCBDC4}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

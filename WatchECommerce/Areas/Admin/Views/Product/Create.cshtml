@@ -1,0 +1,101 @@
+﻿@model ProductCreateViewModel
+<section class="content">
+
+	<div class="row">
+		<div class="col-12">
+			<div class="box">
+				<div class="box-header with-border">
+					<h4 class="box-title">Product Adding</h4>
+				</div>
+				<div class="box-body">
+					<form class="forms-sample" method="post" asp-action="create" enctype="multipart/form-data" en>
+						<div class="text-danger" asp-validation-summary="All"></div>
+						<div class="form-body">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label asp-for="Name" class="fw-700 fs-16 form-label">Name</label>
+										<input asp-for="Name" class="form-control" placeholder="Enter the name of the product...">
+									</div>
+								</div>
+								<!--/span-->
+								<div class="col-md-6">
+									<div class="form-group">
+										<label asp-for="ShortDescription" class="fw-700 fs-16 form-label">Subtitle</label>
+										<input asp-for="ShortDescription" class="form-control" placeholder="Please, Enter ShortDescription Of Product">
+									</div>
+								</div>
+								<!--/span-->
+							</div>
+							<!--/row-->
+							<!--/row-->
+							<!--/row-->
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label asp-for="Price" class="fw-700 fs-16 form-label"> Price Of Product</label>
+										<div class="input-group">
+											<div class="input-group-addon"><i class="ti-money"></i></div>
+											<input asp-for="Price" class="form-control" placeholder="Please, Enter  Price Of Product">
+										</div>
+									</div>
+								</div>
+								<!--/span-->
+								<div class="col-md-6">
+									<div class="form-group">
+										<label asp-for="MainDescription" class="fw-700 fs-16 form-label">MainDescription</label>
+										<div class="input-group">
+
+											<input asp-for="MainDescription" class="form-control" placeholder="Please, Enter MainDescription">
+										</div>
+									</div>
+								</div>
+								<!--/span-->
+
+								<div class="form-group">
+									<label asp-for="BrandId">Product Brands</label>
+									<select asp-for="BrandId" asp-items="Model.Brands" class="form-control" placeholder="Please, Select Brand  of Product" ></select>
+									<span asp-validation-for="BrandId" class="text-danger"></span>
+								</div>
+									<div class="form-group">
+									<label asp-for="ColorIds">Product Colors</label>
+									<select asp-for="ColorIds" asp-items="Model.Colors" class="form-control" placeholder="Please, Select Color  of Product" ></select>
+									<span asp-validation-for="ColorIds" class="text-danger"></span>
+								</div>
+
+								<div class="form-group">
+									<label asp-for="CategoryIds">Product Categories</label>
+									<select asp-for="CategoryIds" asp-items="Model.Categories" class="form-control" placeholder="Please, Select Category  of Product"></select>
+									<span asp-validation-for="CategoryIds" class="text-danger"></span>
+								</div>
+							</div>
+
+							<!--/row-->
+							<div class="row">
+
+								<!--/span-->
+								<div class="col-md-4">
+									<h4 class="box-title mt-20">Product Images</h4>
+									<div class="product-img text-start">
+
+										<div class="input-group my-3">
+											<label asp-for="Images" class="input-group-text btn-primary" for="inputGroupFile01">Upload Images</label>
+											<input asp-for="Images" class="form-control" accept="image/*" id="inputGroupFile01">
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div class="form-actions mt-10">
+							<button type="submit" class="btn btn-primary"> <i class="fa fa-check"></i> Save</button>
+							<button type="button"  asp-action="index" class="btn btn-danger">Cancel</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</section>

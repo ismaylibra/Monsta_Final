@@ -195,6 +195,8 @@ namespace WatchECommerce.Areas.Admin.Controllers
 
             };
 
+            if (!ModelState.IsValid) return View(selectedCategory);
+
 
 
 

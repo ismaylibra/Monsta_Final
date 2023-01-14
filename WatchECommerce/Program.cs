@@ -33,6 +33,7 @@ namespace WatchECommerce
             Constants.SliderPath = Path.Combine(Constants.RootPath, "assets", "img", "slider");
             Constants.BannerPath = Path.Combine(Constants.RootPath, "assets", "img", "bg");
             Constants.BlogPath = Path.Combine(Constants.RootPath, "assets", "img", "blog");
+            Constants.ProductImagePath = Path.Combine(Constants.RootPath, "assets", "img", "product");
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

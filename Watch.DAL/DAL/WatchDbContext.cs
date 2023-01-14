@@ -19,9 +19,11 @@ namespace Watch.DAL.DAL
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<BlogCategory> BlogCategories { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
-        public DbSet<ProductBrand> ProductBrands { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Brand> Brands { get; set; }
         public DbSet<CategoryProduct> CategoryProducts { get; set; }
+        public DbSet<Color> Colors { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; }
 
 
     }

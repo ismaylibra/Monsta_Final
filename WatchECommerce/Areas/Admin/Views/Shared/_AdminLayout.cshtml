@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="/admin/assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/admin/assets/css/skin_color.css">
-
+     @await RenderSectionAsync("Styles",false);
 </head>
 
 <body class="hold-transition dark-skin sidebar-mini theme-primary fixed">
@@ -35,8 +35,8 @@
                 <a href="index.html" class="logo">
                     <!-- logo-->
                     <div class="logo-lg">
-                        <span class="light-logo"><img src="/admin/assets/images/logo-dark-text.png" alt="logo"></span>
-                        <span class="dark-logo"><img src="/admin/assets/images/logo-light-text.png" alt="logo"></span>
+                        <span class="light-logo"><img src="~/admin/assets/images/logo-dark-text.png" alt="logo"></span>
+                        <span class="dark-logo"><img src="~/admin/assets/images/logo-light-text.png" alt="logo"></span>
                     </div>
                 </a>
             </div>
@@ -156,7 +156,7 @@
                 <div class="user-profile px-20 py-10">
                     <div class="d-flex align-items-center">
                         <div class="image">
-                            <img src="/admin/assets/images/avatar/avatar-13.png" class="avatar avatar-lg bg-primary-light rounded100" alt="User Image">
+                            <img src="~/admin/assets/images/avatar/avatar-13.png" class="avatar avatar-lg bg-primary-light rounded100" alt="User Image">
                         </div>
                         <div class="info">
                             <a class="dropdown-toggle px-20" data-bs-toggle="dropdown" href="#">Johen Doe</a>
@@ -265,8 +265,8 @@
                                         </a>
                                         <ul class="treeview-menu">
                                             <li><a asp-controller="product" asp-action="index"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Products</a></li>
-                                            <li><a href="ecommerce_cart.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Products Cart</a></li>
-                                            <li><a href="ecommerce_products_edit.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Products Edit</a></li>
+                                            <li><a asp-controller="color" asp-action="index" ><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Products Color</a></li>
+                                            <li><a asp-controller="product" asp-action="create"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Products Adding</a></li>
                                             <li><a href="ecommerce_details.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product Details</a></li>
                                             <li><a href="ecommerce_orders.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product Orders</a></li>
                                             <li><a href="ecommerce_checkout.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Products Checkout</a></li>
@@ -423,8 +423,8 @@
                                             </span>
                                         </a>
                                         <ul class="treeview-menu">
-                                            <li><a asp-controller="ProductBrand" asp-action="index"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product Brands List </a></li>
-                                            <li><a asp-controller="ProductBrand" asp-action="create"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Add Product Brands</a></li>
+                                            <li><a asp-controller="Brand" asp-action="index"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product Brands List </a></li>
+                                            <li><a asp-controller="Brand" asp-action="create"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Add Product Brands</a></li>
                                            
                                         </ul>
                                     </li>
@@ -546,18 +546,22 @@
     </div>
     <!-- /.content-wrapper -->
     <!-- Vendor JS -->
-    <script src="/admin/assets/js/vendors.min.js"></script>
-    <script src="/admin/assets/js/pages/chat-popup.js"></script>
-    <script src="/admin/assets/icons/feather-icons/feather.min.js"></script>
+    <script src="~/admin/assets/js/vendors.min.js"></script>
+    <script src="~/admin/assets/js/pages/chat-popup.js"></script>
+    <script src="~/admin/assets/icons/feather-icons/feather.min.js"></script>
 
-    <script src="/admin/assets/vendor_components/apexcharts-bundle/dist/apexcharts.js"></script>
-    <script src="/admin/assets/vendor_components/moment/min/moment.min.js"></script>
-    <script src="/admin/assets/vendor_components/fullcalendar/fullcalendar.js"></script>
+    <script src="~/admin/assets/vendor_components/apexcharts-bundle/dist/apexcharts.js"></script>
+    <script src="~/admin/assets/vendor_components/moment/min/moment.min.js"></script>
+    <script src="~/admin/assets/vendor_components/fullcalendar/fullcalendar.js"></script>
 
     <!-- Joblly App -->
-    <script src="/admin/assets/js/template.js"></script>
-    <script src="/admin/assets/js/pages/dashboard.js"></script>
-    <script src="/admin/assets/js/pages/calendar-dash.js"></script>
+    <script src="~/admin/assets/js/template.js"></script>
+    <script src="~/admin/assets/js/pages/dashboard.js"></script>
+    <script src="~/admin/assets/js/pages/calendar-dash.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+   <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+    @await RenderSectionAsync("Scripts", false)
 
 </body>
 </html>

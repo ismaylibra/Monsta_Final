@@ -37,13 +37,13 @@ namespace WatchECommerce.Areas.Admin.Controllers
 
             if (!model.Image.IsImage())
             {
-                ModelState.AddModelError("Image", "Şəkil seçilməlidir..!");
+                ModelState.AddModelError("Image", "An image must be selected..!");
                 return View(model);
             }
 
             if (!model.Image.IsAllowedSize(20))
             {
-                ModelState.AddModelError("Image", "Şəklin ölçüsü maksimum 20mb ola bilər..!");
+                ModelState.AddModelError("Image", "Image size can be maximum 20mb..!");
                 return View(model);
             }
 
@@ -102,7 +102,7 @@ namespace WatchECommerce.Areas.Admin.Controllers
 
                 if (!model.Image.IsImage())
                 {
-                    ModelState.AddModelError("Image", "Sekil secilmelidir");
+                    ModelState.AddModelError("Image", "An image must be selected..!");
                     return View(new SliderUpdateViewModel
                     {
 
