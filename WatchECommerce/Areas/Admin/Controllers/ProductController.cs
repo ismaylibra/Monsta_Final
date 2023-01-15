@@ -25,6 +25,17 @@ namespace WatchECommerce.Areas.Admin.Controllers
             var products = await _dbContext.Products.Where(p => !p.IsDeleted).Include(x=>x.ProductImages).OrderByDescending(p=>p.Id).ToListAsync();
             return View(products);
         }
+        public async Task<IActionResult> Details(int? id)
+        {
+            var product = await _dbContext.Products
+                .Where(p => p.Id==id)
+                .Include(x => x.ProductImages)
+                .Include(p=>p.CategoryProducts).ThenInclude(p=>p.Category)
+                .Include(p => p.ProductColors).ThenInclude(p=>p.Color)
+                .Include(p=>p.Brand)
+                .FirstOrDefaultAsync();
+            return View(product);
+        }
 
         public async Task<IActionResult> Create()
         {
@@ -64,7 +75,7 @@ namespace WatchECommerce.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProductCreateViewModel model)
         {
-            if(!ModelState.IsValid) return View(model);
+           
             var createdProduct = new Product
             {
 
@@ -77,6 +88,7 @@ namespace WatchECommerce.Areas.Admin.Controllers
 
                 
             };
+            if (!ModelState.IsValid) return View(model);
             var productImage = new List<ProductImage>();
             foreach (var item in model.Images)
             {
@@ -400,6 +412,27 @@ namespace WatchECommerce.Areas.Admin.Controllers
             }
         }
 
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id is null) return NotFound();
+
+            var existedProduct = await _dbContext.Products.Where(p=>p.Id==id).Include(p=>p.ProductImages).FirstOrDefaultAsync();
+            if (existedProduct is null) return NotFound();
+            if (existedProduct.Id != id) return NotFound();
+            foreach (var item in existedProduct.ProductImages)
+            {
+                var eventImage = Path.Combine(Constants.RootPath, "assets", "img", "product", item.Name);
+                if (System.IO.File.Exists(eventImage))
+                    System.IO.File.Delete(eventImage);
+            }
+           
+          
+
+            _dbContext.Products.Remove(existedProduct);
+            await _dbContext.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+
+        }
 
     }
 }

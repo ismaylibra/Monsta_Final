@@ -16,9 +16,13 @@
 							<img src="~/assets/img/product/@item.Name" alt="user" class="bbsr-0 bber-0">
 							<div class="fx-overlay scrl-up">
 								<ul class="fx-info">
-									<li><a class="btn btn-outline image-popup-vertical-fit" asp-controller="product" asp-action="update" asp-route-id="@product.Id"><i class="fa-solid fa-pen-to-square"></i></a></li>
-										<li><a class="btn btn-outline" href="javascript:void(0);"><i class="fa-solid fa-trash-can"></i></a></li>
-										<li><a class="btn btn-outline" href="javascript:void(0);"><i class="fa-solid fa-circle-info"></i></a></li>
+
+										<form asp-controller="product" asp-action="delete" method="post" class="form-sample" asp-route-id="@product.Id">
+											<li><a class="btn btn-outline image-popup-vertical-fit" asp-controller="product" asp-action="update" asp-route-id="@product.Id"><i class="fa-solid fa-pen-to-square"></i></a></li>
+										<li><button type="submit"  ><i class="fa-solid fa-trash-can"></i></button></li>
+										<li><a class="btn btn-outline " asp-action="details" asp-route-id="@product.Id"><i class="fa-solid fa-circle-info"></i></a></li>
+										</form>
+									
 								</ul>
 							</div>
 						</div>	

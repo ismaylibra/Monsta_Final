@@ -16,16 +16,35 @@ namespace WatchECommerce.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var sliders = await _dbContext.Sliders.Where(s => !s.IsDeleted).OrderByDescending(s => s.Id).ToListAsync();
-            var banners = await _dbContext.Banners.Where(s => !s.IsDeleted).OrderByDescending(s => s.Id).ToListAsync();
-            var blogs = await _dbContext.Blogs.Where(s => !s.IsDeleted).OrderByDescending(s => s.Id).ToListAsync();
+            var sliders = await _dbContext.Sliders
+                .Where(s => !s.IsDeleted)
+                .OrderByDescending(s => s.Id)
+                .ToListAsync();
+
+            var banners = await _dbContext.Banners
+                .Where(s => !s.IsDeleted)
+                .OrderByDescending(s => s.Id)
+                .ToListAsync();
+
+            var blogs = await _dbContext.Blogs
+                .Where(s => !s.IsDeleted)
+                .OrderByDescending(s => s.Id)
+                .ToListAsync();
+
+            var products = await _dbContext.Products
+                .Where(p => !p.IsDeleted)
+                .Include(p=>p.ProductImages)
+                .Include(p => p.CategoryProducts).ThenInclude(p => p.Category)
+                .OrderByDescending(p => p.Id)
+                .ToListAsync();
 
 
             var homeViewModel = new HomeViewModel
             {
                 Sliders = sliders,
                 Banners = banners,
-                Blogs = blogs
+                Blogs = blogs,
+                Products = products
             };
            
             return View(homeViewModel);
