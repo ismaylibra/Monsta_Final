@@ -7,17 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="/admin/assets/images/favicon.ico">
+    <link rel="icon" href="~/admin/assets/images/favicon.ico">
 
     <title>Joblly - Dashboard</title>
 
-    <!-- Vendors Style-->
-    <link rel="stylesheet" href="/admin/assets/css/vendors_css.css">
+    <link rel="stylesheet" href="~/admin/assets/css/vendors_css.css">
 
-    <!-- Style-->
-    <link rel="stylesheet" href="/admin/assets/css/style.css">
+    <link rel="stylesheet" href="~/admin/assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/admin/assets/css/skin_color.css">
+    <link rel="stylesheet" href="~/admin/assets/css/skin_color.css">
      @await RenderSectionAsync("Styles",false);
 </head>
 
@@ -40,9 +38,7 @@
                     </div>
                 </a>
             </div>
-            <!-- Header Navbar -->
             <nav class="navbar navbar-static-top">
-                <!-- Sidebar toggle button-->
                 <div class="app-menu">
                     <ul class="header-megamenu nav">
                         <li class="btn-group nav-item d-md-none">
@@ -65,7 +61,6 @@
                         </li>
 
 
-                        <!-- Notifications -->
                         <li class="dropdown notifications-menu">
                             <a href="#" class="waves-effect waves-light dropdown-toggle" data-bs-toggle="dropdown" title="Notifications">
                                 <i data-feather="bell"></i>
@@ -86,7 +81,6 @@
                                 </li>
 
                                 <li>
-                                    <!-- inner menu: contains the actual data -->
                                     <ul class="menu sm-scrol">
                                         <li>
                                             <a href="#">
@@ -130,7 +124,6 @@
                                 </li>
                             </ul>
                         </li>
-                        <!-- User Account-->
                         <li class="dropdown user user-menu">
                             <a href="#" class="waves-effect waves-light dropdown-toggle" data-bs-toggle="dropdown" title="User">
                                 <i class="icon-User"><span class="path1"></span><span class="path2"></span></i>
@@ -151,7 +144,6 @@
         </header>
 
         <aside class="main-sidebar">
-            <!-- sidebar-->
             <section class="sidebar position-relative">
                 <div class="user-profile px-20 py-10">
                     <div class="d-flex align-items-center">
@@ -178,7 +170,6 @@
                 </div>
                 <div class="multinav">
                     <div class="multinav-scroll" style="height: 100%;">
-                        <!-- sidebar menu-->
                         <ul class="sidebar-menu" data-widget="tree">
                             <li class="treeview">
                                 <a href="#">
@@ -267,7 +258,6 @@
                                             <li><a asp-controller="product" asp-action="index"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Products</a></li>
                                             <li><a asp-controller="color" asp-action="index" ><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Products Color</a></li>
                                             <li><a asp-controller="product" asp-action="create"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Products Adding</a></li>
-                                            <li><a href="ecommerce_details.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product Details</a></li>
                                             <li><a href="ecommerce_orders.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product Orders</a></li>
                                             <li><a href="ecommerce_checkout.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Products Checkout</a></li>
                                         </ul>
@@ -525,27 +515,18 @@
         </aside>
         <div class="content-wrapper">
             <div class="container-full">
+
                 @RenderBody()
-                <!-- /.content-wrapper -->
+              
 
             </div>
         </div>
         <footer class="main-footer">
-            <div class="pull-right d-none d-sm-inline-block">
-                <ul class="nav nav-primary nav-dotted nav-dot-separated justify-content-center justify-content-md-end">
-                    <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0)">FAQ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Purchase Now</a>
-                    </li>
-                </ul>
-            </div>
-            &copy; 2021 <a href="https://www.multipurposethemes.com/">Multipurpose Themes</a>. All Rights Reserved.
+          
+            &copy; 2022 Ismayil Ibra. All Rights Reserved.
         </footer>
     </div>
-    <!-- /.content-wrapper -->
-    <!-- Vendor JS -->
+   
     <script src="~/admin/assets/js/vendors.min.js"></script>
     <script src="~/admin/assets/js/pages/chat-popup.js"></script>
     <script src="~/admin/assets/icons/feather-icons/feather.min.js"></script>
@@ -554,7 +535,7 @@
     <script src="~/admin/assets/vendor_components/moment/min/moment.min.js"></script>
     <script src="~/admin/assets/vendor_components/fullcalendar/fullcalendar.js"></script>
 
-    <!-- Joblly App -->
+    
     <script src="~/admin/assets/js/template.js"></script>
     <script src="~/admin/assets/js/pages/dashboard.js"></script>
     <script src="~/admin/assets/js/pages/calendar-dash.js"></script>

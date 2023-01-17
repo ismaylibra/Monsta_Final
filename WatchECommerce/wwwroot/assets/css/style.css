@@ -7976,7 +7976,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     }
 
     .widget_list h2 {
-        color: #242424;
+        color: #ebebeb;
         font-size: 24px;
         margin: 0 0 20px;
         text-transform: capitalize;
@@ -7994,7 +7994,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
         }
 
         .widget_list.widget_categories > ul > li > a {
-            color: #242424;
+            color: #ebebeb;
             font-size: 14px;
             display: block;
         }
@@ -8033,7 +8033,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
         }
 
         .widget_list.widget_brands ul li a, .widget_list.widget_color ul li a {
-            color: #5a5a5a;
+            color: #ebebeb;
             font-size: 15px;
             text-transform: capitalize;
         }
@@ -8078,7 +8078,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
         float: left;
         line-height: 31px;
         width: 100%;
-        color: #5a5a5a;
+        color: #8f8f8f;
         font-weight: 500;
     }
 
