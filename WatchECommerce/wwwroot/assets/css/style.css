@@ -10886,7 +10886,7 @@ input[type=number]::-webkit-outer-spin-button {
         line-height: 24px;
         text-transform: capitalize;
         font-weight: 700;
-        color: #242424;
+        color: #ada8a8;
         margin-bottom: 15px;
     }
 
@@ -10896,6 +10896,10 @@ input[type=number]::-webkit-outer-spin-button {
     }
 }
 
+.chose_icone img {
+    border-radius: 100%;
+    margin-bottom: 25px;
+}
 .about_content p {
     color: #5a5a5a;
     margin-bottom: 16px;
@@ -10931,7 +10935,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .chose_title h1 {
-    color: #242424;
+    color: #ada8a8;
     display: inline-block;
     font-size: 24px;
     line-height: 24px;
@@ -10959,7 +10963,7 @@ input[type=number]::-webkit-outer-spin-button {
 .chose_content h3 {
     font-size: 14px;
     text-transform: capitalize;
-    color: #242424;
+    color: #ada8a8;
     font-weight: 700;
     line-height: 20px;
     margin-bottom: 15px;
@@ -11008,7 +11012,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .gallery_thumb {
-    margin-bottom: 18px;
+    margin-bottom: 30px;
 }
 
 @media only screen and (max-width: 767px) {
@@ -11022,9 +11026,9 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
     .about_gallery_content h3 {
-        font-size: 14px;
+        font-size: 25px;
         text-transform: capitalize;
-        color: #242424;
+        color: #ada8a8;
         font-weight: 700;
         line-height: 20px;
         margin-bottom: 10px;
@@ -11051,7 +11055,7 @@ input[type=number]::-webkit-outer-spin-button {
     line-height: 24px;
     text-transform: capitalize;
     font-weight: 700;
-    color: #242424;
+    color: #ada8a8;
     margin-bottom: 0;
 }
 
@@ -11132,7 +11136,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .single_testimonial span.name {
     font-weight: 700;
-    color: #242424;
+    color: #ada8a8;
     text-transform: uppercase;
     font-family: "Playfair Display", serif;
 }
@@ -11502,7 +11506,7 @@ input[type=number]::-webkit-outer-spin-button {
 /*services page css end*/
 /* 19. portfolio page css here */
 .portfolio_content {
-    background: #f9f9f9;
+    background: #726453 !important;
     padding: 30px 12px 34px;
 }
 
@@ -11529,6 +11533,7 @@ input[type=number]::-webkit-outer-spin-button {
 .portfolio_content p {
     line-height: 26px;
     margin-bottom: 17px;
+    color:#ebebeb
 }
 
 @media only screen and (max-width: 767px) {

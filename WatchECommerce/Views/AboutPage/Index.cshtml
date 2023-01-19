@@ -1,0 +1,141 @@
+﻿@model AboutPageViewModel
+@{
+    var aboutPage = Model.AboutPages;
+    var workers = Model.AboutWorkers;
+    var whyUs = Model.WhyUs;
+    var shortInfo = Model.WhyUsShortInfos;
+}
+<!--breadcrumbs area start-->
+<div class="breadcrumbs_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <h3>about us</h3>
+                    <ul>
+                        <li><a asp-controller="home" asp-action="index">home</a></li>
+                        <li>></li>
+                        <li>about us</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--breadcrumbs area end-->
+<!--about section area -->
+<div class="about_section">
+    <div class="container">
+        <div class="row align-items-center">
+            @foreach (var about in aboutPage.OrderByDescending(a=>a.Id).Take(1))
+            {
+                <div class="col-12">
+                    <div class="about_thumb">
+                        <img src="~/assets/img/about/@about.ImageUrl" alt="">
+                    </div>
+
+                    <div class="about_content">
+                        <h1>@about.Title</h1>
+                        <p>@about.Subtitle</p>
+                        <span>“@about.Slogan”</span>
+                    </div>
+                </div>
+            }
+           
+        </div>
+    </div>
+</div>
+<!--about section end-->
+<!--chose us area start-->
+<div class="choseus_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="chose_title">
+                    <h1>Why chose us?</h1>
+                </div>
+            </div>
+            @foreach (var choose in shortInfo.OrderByDescending(c=>c.Id).Take(3))
+            {
+                 <div class="col-lg-4 col-md-6">
+                <div class="single_chose">
+                    <div class="chose_icone">
+                        <img src="~/assets/img/about/@choose.ImageUrl" alt="">
+                    </div>
+                    <div class="chose_content">
+                        <h3>@choose.Subtitle</h3>
+                        <p>@choose.Description</p>
+
+                    </div>
+                </div>
+            </div>
+            }
+           
+            
+        </div>
+    </div>
+</div>
+<!--chose us area end-->
+<!--services img area-->
+<div class="about_gallery_section">
+    <div class="container">
+        <div class="row">
+
+            @foreach (var item in whyUs.OrderByDescending(c=>c.Id).Take(3))
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_gallery_section">
+                        <div class="gallery_thumb">
+                            <img src="~/assets/img/about/@item.ImageUrl" alt="">
+                        </div>
+                        <div class="about_gallery_content">
+                            <h3>@item.Title</h3>
+                            <p>@item.Description</p>
+
+                        </div>
+                    </div>
+                </div>
+            }
+            
+            
+        </div>
+    </div>
+</div>
+<!--services img end-->
+<!--testimonials section start-->
+<div class="testimonial_are">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="testimonial_titile">
+                    <h1>What Our Custumers Say ?</h1>
+                </div>
+            </div>
+            <div class="testimonial_active owl-carousel">
+                @foreach (var worker in workers)
+                {
+                    <div class="col-12">
+                        <div class="single_testimonial">
+                            <p>@worker.Description</p>
+                            <img style="border-radius:100%;" src="~/assets/img/about/@worker.ImageUrl" alt="">
+                            <span class="name">@worker.FullName</span>
+                            <span class="job_title">@worker.Profession</span>
+                            <div class="product_ratting">
+                                <ul>
+                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                }
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!--testimonials section end-->

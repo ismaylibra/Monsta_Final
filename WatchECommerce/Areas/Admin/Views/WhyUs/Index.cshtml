@@ -1,0 +1,54 @@
+﻿@model List<WhyUs>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 grid-margin stretch-card ">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Why Us</h4>
+
+                    <a asp-controller="whyUS" asp-action="create" class="btn btn-success text-end"><i class="fa-solid fa-circle-plus"></i></a>
+
+                    <div class="table-responsive">
+                        <table class="table  ">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Title</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <img style="border-radius:0px; object-fit:contain; height:100px; width:100px;" src="~/assets/img/about/@item.ImageUrl" alt="image">
+                                        </td>
+                                        <td>@item.Title</td>
+
+
+                                        <td>
+
+                                            <form asp-action="delete" method="post" class="form-sample" asp-route-id="@item.Id">
+                                                <a class="btn btn-success" asp-action="update" asp-route-id="@item.Id"><i class="fa-regular fa-pen-to-square"></i></a>
+                                                <button type="submit" class="btn btn-danger"><i class="fa-regular fa-trash-can"></i></button>
+                                            </form>
+                                        </td>
+
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

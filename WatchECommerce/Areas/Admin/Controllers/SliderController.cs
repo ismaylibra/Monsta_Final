@@ -113,7 +113,7 @@ namespace WatchECommerce.Areas.Admin.Controllers
 
                 if (!model.Image.IsAllowedSize(50))
                 {
-                    ModelState.AddModelError("Image", "Sekilin hecmi max 20mb ola biler");
+                    ModelState.AddModelError("Image", "Image size can be maximum 20mb..!");
                     return View(new SliderUpdateViewModel
                     {
 

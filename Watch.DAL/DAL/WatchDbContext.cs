@@ -24,6 +24,13 @@ namespace Watch.DAL.DAL
         public DbSet<CategoryProduct> CategoryProducts { get; set; }
         public DbSet<Color> Colors { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
+        public DbSet<AboutPage> AboutPages { get; set; }
+        public DbSet<WhyUs> WhyUs { get; set; }
+        public DbSet<AboutWorkers> AboutWorkers { get; set; }
+        public DbSet<WhyUsShortInfo> whyUsShortInfos { get; set; }
+
+
+
 
 
     }

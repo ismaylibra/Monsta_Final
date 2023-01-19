@@ -1,0 +1,96 @@
+﻿@model AboutWorkersUpdateViewModel
+<section class="content">
+
+	<div class="row">
+		<div class="col-12">
+			<div class="box">
+				<div class="box-header with-border">
+					<h4 class="box-title">Editing Worker </h4>
+				</div>
+				<div class="box-body">
+					<form class="forms-sample" method="post" asp-action="update" enctype="multipart/form-data" en>
+						<div class="text-danger" asp-validation-summary="All"></div>
+						<div class="imagesTable">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+
+										<th>Image</th>
+
+
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+
+										<td class="text-center">
+											<img style="border-radius:0px; object-fit:contain; height:400px; width:400px;" class="productImage  " src="~/assets/img/about/@Model.ImageUrl" />
+										</td>
+
+
+									</tr>
+
+
+								</tbody>
+							</table>
+
+						</div>
+						<div class="form-body">
+							<div class="row">
+							
+								<!--/span-->
+								<div class="col-md-6">
+									<div class="form-group">
+										<label asp-for="Description" class="fw-700 fs-16 form-label">Description</label>
+										<input asp-for="Description" class="form-control" placeholder="Please, Enter Description Of Worker">
+									</div>
+								</div>
+								<!--/span-->
+								<!--/span-->
+								<div class="col-md-6">
+									<div class="form-group">
+										<label asp-for="FullName" class="fw-700 fs-16 form-label">FullName</label>
+										<input asp-for="FullName" class="form-control" placeholder="Please, Enter FullName Of Worker">
+									</div>
+								</div>
+								<!--/span-->
+								<!--/span-->
+								<div class="col-md-6">
+									<div class="form-group">
+										<label asp-for="Profession" class="fw-700 fs-16 form-label">Profession</label>
+										<input asp-for="Profession" class="form-control" placeholder="Please, Enter Profession Of Worker">
+									</div>
+								</div>
+								<!--/span-->
+							</div>
+							<!--/row-->
+							<!--/row-->
+
+							<div class="row">
+
+								<!--/span-->
+								<div class="col-md-4">
+									<h4 class="box-title mt-20">Upload Image</h4>
+									<div class="product-img text-start">
+
+										<div class="input-group my-3">
+											<label asp-for="Image" class="input-group-text btn-primary" for="inputGroupFile01">Upload  Image</label>
+											<input asp-for="Image" type="file" class="form-control" id="inputGroupFile01">
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div class="form-actions mt-10">
+							<button type="submit" class="btn btn-primary"> <i class="fa fa-check"></i> Save</button>
+							<button type="button" asp-controller="aboutWorkers" asp-action="index" class="btn btn-danger">Cancel</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</section>

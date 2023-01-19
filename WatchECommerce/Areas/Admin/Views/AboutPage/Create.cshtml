@@ -1,0 +1,74 @@
+﻿@model AboutPageCreateViewModel
+<section class="content">
+
+	<div class="row">
+		<div class="col-12">
+			<div class="box">
+				<div class="box-header with-border">
+					<h4 class="box-title">About Page Creating</h4>
+				</div>
+				<div class="box-body">
+					<form class="forms-sample" method="post" asp-action="create" enctype="multipart/form-data" en>
+						<div class="text-danger" asp-validation-summary="All"></div>
+						<div class="form-body">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label asp-for="Title" class="fw-700 fs-16 form-label">Main Title</label>
+										<input asp-for="Title" class="form-control" placeholder="Main Title">
+									</div>
+								</div>
+								<!--/span-->
+								<div class="col-md-6">
+									<div class="form-group">
+										<label asp-for="Subtitle" class="fw-700 fs-16 form-label">Subtitle</label>
+										<input asp-for="Subtitle" class="form-control" placeholder="Please, Enter Subtitle Of Page">
+									</div>
+								</div>
+								<!--/span-->
+							</div>
+							<!--/row-->
+							<!--/row-->
+							<!--/row-->
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label asp-for="Slogan" class="fw-700 fs-16 form-label">Slogan</label>
+										<div class="input-group">
+											
+											<input asp-for="Slogan" class="form-control" placeholder="Please, Enter Slogan Of Page">
+										</div>
+									</div>
+								</div>
+					
+							</div>
+
+							<!--/row-->
+							<div class="row">
+
+								<!--/span-->
+								<div class="col-md-4">
+									<h4 class="box-title mt-20">Upload Image</h4>
+									<div class="product-img text-start">
+
+										<div class="input-group my-3">
+											<label asp-for="Image" class="input-group-text btn-primary" for="inputGroupFile01">Upload  Image</label>
+											<input asp-for="Image" type="file" class="form-control" id="inputGroupFile01">
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div class="form-actions mt-10">
+							<button type="submit" class="btn btn-primary"> <i class="fa fa-check"></i> Save</button>
+							<button type="button" asp-controller="aboutpage" asp-action="index" class="btn btn-danger">Cancel</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</section>
