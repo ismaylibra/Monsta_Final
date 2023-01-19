@@ -1,6 +1,5 @@
 ﻿@{
     ShopSideBarViewModel model = Model;
-    var products = model.Products;
     var brands = model.Brands;
     var colors = model.Colors;
     var categories = model.Categories;
@@ -11,7 +10,7 @@
         <ul>
             @foreach (var category in categories)
             {
-                <li><a href="#">@category.Name</a> </li>
+                <li><a asp-controller="product" asp-action="ShopSideBarCategory" asp-route-id="@category.Id">@category.Name</a> </li>
             }
           
            
@@ -35,7 +34,7 @@
         <ul>
             @foreach (var brand in brands)
             {
-                <li><a href="#">@brand.Name</a> <span>(@brand.Products.Count)</span> </li>
+                <li><a asp-controller="product" asp-action="ShopSideBarBrand" asp-route-id="@brand.Id">@brand.Name</a> </li>
             }
            
         </ul>
@@ -45,7 +44,7 @@
         <ul>
             @foreach (var color in colors)
             {
-                <li><a href="#">@color.Name </a> </li>
+                <li><a asp-controller="product" asp-action="ShopSideBarColor" asp-route-id="@color.Id">@color.Name </a> </li>
             }
             
            

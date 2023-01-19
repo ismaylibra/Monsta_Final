@@ -79,19 +79,8 @@
                             <div id="menu" class="text-left ">
                                 <ul class="offcanvas_main_menu">
                                     <li class="menu-item-has-children active">
-                                        <a href="#">Home</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="index.html">Home 1</a></li>
-                                            <li><a href="index-2.html">Home 2</a></li>
-                                            <li><a href="index-3.html">Home 3</a></li>
-                                            <li><a href="index-4.html">Home 4</a></li>
-                                            <li><a href="index-5.html">Home 5</a></li>
-                                            <li><a href="index-6.html">Home 6</a></li>
-                                            <li><a href="index-7.html">Home 7</a></li>
-                                            <li><a href="index-8.html">Home 8</a></li>
-                                            <li><a href="index-9.html">Home 9</a></li>
-                                            <li><a href="index-10.html">Home 10</a></li>
-                                        </ul>
+                                        <a asp-controller="home" asp-action="index">Home</a>
+                                  
                                     </li>
                                     <li class="menu-item-has-children">
                                         <a asp-controller="product" asp-action="index">Shop</a>
@@ -340,26 +329,15 @@
                         <div class="col-12">
                             <div class="main_menu_inner">
                                 <div class="logo_sticky">
-                                    <a href="index.html"><img src="~/assets/img/logo/logo-3.png" alt=""></a>
+                                    <a asp-controller="home" asp-action="index"><img src="~/assets/img/logo/logo-3.png" alt=""></a>
                                 </div>
                                 <div class="main_menu">
                                     <nav>
                                         <ul>
 
                                             <li class="active">
-                                                <a href="index.html">Home <i class="fa fa-angle-down"></i></a>
-                                                <ul class="sub_menu">
-                                                    <li><a href="index.html">Home 1</a></li>
-                                                    <li><a href="index-2.html">Home 2</a></li>
-                                                    <li><a href="index-3.html">Home 3</a></li>
-                                                    <li><a href="index-4.html">Home 4</a></li>
-                                                    <li><a href="index-5.html">Home 5</a></li>
-                                                    <li><a href="index-6.html">Home 6</a></li>
-                                                    <li><a href="index-7.html">Home 7</a></li>
-                                                    <li><a href="index-8.html">Home 8</a></li>
-                                                    <li><a href="index-9.html">Home 9</a></li>
-                                                    <li><a href="index-10.html">Home 10</a></li>
-                                                </ul>
+                                                <a asp-controller="home" asp-action="index">Home <i class="fa fa-angle-down"></i></a>
+                                             
                                             </li>
                                             <li>
                                                 <a asp-controller="product" asp-action="index">shop <i class="fa fa-angle-down"></i></a>
@@ -552,7 +530,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="copyright_area">
-                                <p>&copy; 2022 <a href="index.html" class="text-uppercase">MONSTA</a>. Made with <i class="fa fa-heart"></i> by <a target="_blank" href="https://www.hasthemes.com/">HasThemes</a></p>
+                                <p>&copy; 2022 <a asp-controller="home" asp-action="index" class="text-uppercase">MONSTA</a>. Made with <i class="fa fa-heart"></i> by <a target="_blank" href="https://www.hasthemes.com/">HasThemes</a></p>
                                 <img src="~/assets/img/icon/papyel2.png" alt="">
                             </div>
                         </div>

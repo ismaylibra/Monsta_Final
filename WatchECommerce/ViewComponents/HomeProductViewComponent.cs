@@ -4,11 +4,11 @@ using Watch.DAL.DAL;
 
 namespace WatchECommerce.ViewComponents
 {
-    public class HomeProduct : ViewComponent
+    public class HomeProductViewComponent : ViewComponent
     {
         private readonly WatchDbContext _dbContext;
 
-        public HomeProduct(WatchDbContext dbContext)
+        public HomeProductViewComponent(WatchDbContext dbContext)
         {
             _dbContext = dbContext;
         }

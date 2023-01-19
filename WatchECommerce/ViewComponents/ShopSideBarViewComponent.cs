@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Watch.DAL.DAL;
+using WatchECommerce.ViewModels;
 
 namespace WatchECommerce.ViewComponents
 {
@@ -15,14 +16,17 @@ namespace WatchECommerce.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var products = await _dbContext.Products
-                .Where(p => !p.IsDeleted)
-                .Include(p => p.ProductColors).ThenInclude(p => p.Color)
-                .Include(p => p.CategoryProducts).ThenInclude(p => p.Category)
-                .Include(p => p.ProductImages)
-                .Include(p => p.Brand)
-                .ToListAsync();
-            return View(products);
+            var categories  = await _dbContext.ProductCategories.Where(c=>!c.IsDeleted).ToListAsync();
+            var brands = await _dbContext.Brands.Where(c => !c.IsDeleted).ToListAsync();
+            var colors = await _dbContext.Colors.Where(c => !c.IsDeleted).ToListAsync();
+
+            var viewModel = new ShopSideBarViewModel
+            {
+                Categories = categories,
+                Brands = brands,
+                Colors=colors
+            };
+            return View(viewModel);
         }
     }
 }
