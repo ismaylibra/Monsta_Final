@@ -19,6 +19,7 @@
 
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="~/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!--modernizr min js here-->
     <script src="~/assets/js/vendor/modernizr-3.7.1.min.js"></script>
@@ -84,38 +85,6 @@
                                     </li>
                                     <li class="menu-item-has-children">
                                         <a asp-controller="product" asp-action="index">Shop</a>
-                                        <ul class="sub-menu">
-                                            <li class="menu-item-has-children">
-                                                <a href="#">Shop Layouts</a>
-                                                <ul class="sub-menu">
-                                                <li><a asp-controller="product" asp-action="index">shop</a></li>
-                                                    <li><a href="shop-fullwidth.html">Full Width</a></li>
-                                                    <li><a href="shop-fullwidth-list.html">Full Width list</a></li>
-                                                    <li><a href="shop-right-sidebar.html">Right Sidebar </a></li>
-                                                    <li><a href="shop-right-sidebar-list.html"> Right Sidebar list</a></li>
-                                                    <li><a href="shop-list.html">List View</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="menu-item-has-children">
-                                                <a href="#">other Pages</a>
-                                                <ul class="sub-menu">
-                                                    <li><a asp-controller="portfolio" asp-action="index">portfolio</a></li>
-                                                    <li><a href="portfolio-details.html">portfolio details</a></li>
-                                                    <li><a href="cart.html">cart</a></li>
-                                                    <li><a href="checkout.html">Checkout</a></li>
-                                                    <li><a href="my-account.html">my account</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="menu-item-has-children">
-                                                <a href="#">Product Types</a>
-                                                <ul class="sub-menu">
-                                                    <li><a href="product-details.html">product details</a></li>
-                                                    <li><a href="product-sidebar.html">product sidebar</a></li>
-                                                    <li><a href="product-grouped.html">product grouped</a></li>
-                                                    <li><a href="variable-product.html">product variable</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
                                     </li>
                                     <li class="menu-item-has-children">
                                         <a asp-controller="blog" asp-action="index">blog</a>
@@ -337,52 +306,19 @@
                                         <ul>
 
                                             <li class="active">
-                                                <a asp-controller="home" asp-action="index">Home <i class="fa fa-angle-down"></i></a>
+                                            <a asp-controller="home" asp-action="index">Home <i class="fa-solid fa-house"></i> </a>
                                              
                                             </li>
                                             <li>
-                                                <a asp-controller="product" asp-action="index">shop <i class="fa fa-angle-down"></i></a>
-                                                <ul class="mega_menu">
-                                                    <li>
-                                                        <a href="#">Shop Layouts</a>
-                                                        <ul>
-                                                            <li><a href="shop-fullwidth.html">Full Width</a></li>
-                                                            <li><a href="shop-fullwidth-list.html">Full Width list</a></li>
-                                                            <li><a href="shop-right-sidebar.html">Right Sidebar </a></li>
-                                                            <li><a href="shop-right-sidebar-list.html"> Right Sidebar list</a></li>
-                                                            <li><a href="shop-list.html">List View</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">other Pages</a>
-                                                        <ul>
-                                                            <li><a asp-controller="portfolio" asp-action="index">portfolio</a></li>
-                                                            <li><a href="portfolio-details.html">portfolio details</a></li>
-                                                            <li><a href="cart.html">cart</a></li>
-                                                            <li><a href="checkout.html">Checkout</a></li>
-                                                            <li><a href="my-account.html">my account</a></li>
-
-
-                                                        </ul>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Product Types</a>
-                                                        <ul>
-                                                            <li><a href="product-details.html">product details</a></li>
-                                                            <li><a href="product-sidebar.html">product sidebar</a></li>
-                                                            <li><a href="product-grouped.html">product grouped</a></li>
-                                                            <li><a href="variable-product.html">product variable</a></li>
-
-                                                        </ul>
-                                                    </li>
-                                                </ul>
+                                            <a asp-controller="product" asp-action="index">shop <i class="fa-brands fa-shopify"></i> </a>
+                                              
                                             </li>
                                             <li>
-                                                <a asp-controller="blog" asp-action="index">blog</a>
+                                            <a asp-controller="blog" asp-action="index">blog <i class="fa-brands fa-blogger-b"></i></a>
                                                 
                                             </li>
-                                            <li><a asp-controller="portfolio" asp-action="index">portfolio</a></li>
-                                             <li><a asp-controller="aboutPage" asp-action="index">About Us</a></li>
+                                        <li><a asp-controller="portfolio" asp-action="index">portfolio <i class="fa-solid fa-book"></i></a></li>
+                                        <li><a asp-controller="aboutPage" asp-action="index">About Us <i class="fa-solid fa-file"></i></a></li>
                                          
                                         </ul>
                                     </nav>
