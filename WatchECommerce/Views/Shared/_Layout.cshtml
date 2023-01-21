@@ -176,11 +176,25 @@
                                         </ul>
                                     </li>
                                     <li class="top_links">
-                                        <a href="#">My Account <i class="ion-chevron-down"></i></a>
+                                        @if(User.Identity.IsAuthenticated)
+                                        {
+                                                <a href="#">
+                                                    
+                                                    @User.Identity.Name <i class="ion-chevron-down"></i></a>
+                                        }
+                                        else
+                                        {
+                                             <a href="#">My Account <i class="ion-chevron-down"></i></a>
+                                        }
+                                       
                                         <ul class="dropdown_links">
-                                            <li><a href="checkout.html">Checkout </a></li>
-                                            <li><a href="my-account.html">My Account </a></li>
-                                            <li><a href="cart.html">Shopping Cart</a></li>
+                                            @if (User.Identity.IsAuthenticated)
+                                            {
+                                                <li><a asp-controller="account" asp-action="logout">Logout </a></li>
+                                            }
+                                            
+                                            <li><a asp-controller="account" asp-action="login">My Account </a></li>
+                                              <li><a asp-controller="account" asp-action="register">Register </a></li>
                                             <li><a href="wishlist.html">Wishlist</a></li>
                                         </ul>
                                     </li>

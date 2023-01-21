@@ -1,14 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Watch.Core.Entities;
+using Watch.Core.IdentityModels;
 
 namespace Watch.DAL.DAL
 {
-    public class WatchDbContext : DbContext
+    public class WatchDbContext : IdentityDbContext<User>
     {
         public WatchDbContext(DbContextOptions options) : base(options)
         {

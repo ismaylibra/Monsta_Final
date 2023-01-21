@@ -1,0 +1,93 @@
+﻿@model RegisterViewModel
+ <!--breadcrumbs area start-->
+<div class="breadcrumbs_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <h3>Register</h3>
+                    <ul>
+                        <li><a asp-controller="home" asp-action="index">home</a></li>
+                        <li>></li>
+                        <li>Register</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--breadcrumbs area end-->
+<!-- customer login start -->
+<div class="customer_login">
+    <div class="container">
+        <div class="row  d-flex justify-content-center">
+          
+            <!--register area start-->
+            <div class="col-lg-6 col-md-12 ">
+                <div class="account_form register">
+                    <h2>Register</h2>
+                    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                    <form method="post" asp-action="register" enctype="multipart/form-data">
+                        
+                        <div class="form-group">
+                            <label asp-for="Image"></label>
+                            
+                            <input asp-for="Image" type="file" class="form-control">
+                            <span class="text-danger" asp-validation-for="Image"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Name">Name <span>*</span></label>
+                            <input asp-for="Name" class="form-control" placeholder="Enter your name...">
+                            <span class="text-danger" asp-validation-for="Name"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="LastName">Last Name <span>*</span></label>
+                            <input asp-for="LastName" class="form-control" placeholder="Enter your last name...">
+                            <span class="text-danger" asp-validation-for="LastName"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="UserName">UserName <span>*</span></label>
+                            <input asp-for="UserName" class="form-control" placeholder="Enter your username...">
+                            <span class="text-danger" asp-validation-for="UserName"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="BirthDate">BirthDate <span>*</span></label>
+                            <input asp-for="BirthDate" class="form-control" placeholder="Enter your birthdate...">
+                            <span class="text-danger" asp-validation-for="BirthDate"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Gender">Gender</label>
+                            <select asp-for="Gender"   class="form-control genderSelect">
+                                <option disabled="disabled" selected="selected">Select Your Gender</option>
+                                <option value="true">Male</option>
+                                <option value="false">Female</option>
+                            </select>
+                            <span class="text-danger" asp-validation-for="Gender" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label asp-for="Email">Email <span>*</span></label>
+                            <input asp-for="Email" class="form-control" placeholder="Enter your e-mail...">
+                            <span class="text-danger" asp-validation-for="Email"></span>
+                        </div>
+                           <p>
+                            <label asp-for="Password">Password <span>*</span></label>
+                            <input asp-for="Password" class="form-control" placeholder="Enter your password...">
+                            <span class="text-danger" asp-validation-for="Password"></span>
+                        </p>
+                        <div class="form-group">
+                            <label asp-for="ConfirmedPassword">Confirm Password <span>*</span></label>
+                            <input asp-for="ConfirmedPassword" class="form-control" placeholder="Confirm your password...">
+                            <span class="text-danger" asp-validation-for="ConfirmedPassword"></span>
+                        </div>
+                        <div class="login_submit mt-3 text-center">
+                            <button type="submit">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--register area end-->
+        </div>
+    </div>
+</div>
+<!-- customer login end -->

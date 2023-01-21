@@ -10438,7 +10438,7 @@ input[type=number]::-webkit-outer-spin-button {
 .account_form h2 {
     font-size: 30px;
     text-transform: capitalize;
-    color: #212121;
+    color: #ada8a8;
     font-weight: 500;
     line-height: 22px;
     margin-bottom: 34px;
@@ -10460,7 +10460,7 @@ input[type=number]::-webkit-outer-spin-button {
 .account_form label {
     font-size: 15px;
     font-weight: 400;
-    color: #212121;
+    color: #ada8a8;
     cursor: pointer;
     line-height: 12px;
     margin-bottom: 12px;
@@ -10469,13 +10469,16 @@ input[type=number]::-webkit-outer-spin-button {
     .account_form label:hover {
         color: #c09578;
     }
-
+.genderSelect{
+    background-color:#ada8a8;
+}
 .account_form input {
     border: 1px solid #ebebeb;
     height: 40px;
     max-width: 100%;
     padding: 0 20px;
-    background: none;
+    background-color: #ada8a8;
+    color: #000;
     width: 100%;
 }
 
