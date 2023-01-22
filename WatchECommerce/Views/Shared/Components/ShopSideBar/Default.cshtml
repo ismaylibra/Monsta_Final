@@ -54,10 +54,10 @@
     <div class="widget_list tag-cloud">
         <h2>Tags</h2>
         <div class="tag_widget">
-            <ul
+            <ul>
                 @foreach (var tag in categories)
                 {
-                    <li><a href="#">@tag.Name</a></li>
+                    <li><a asp-controller="product" asp-action="ShopSideBarCategory" asp-route-id="@tag.Id">@tag.Name</a></li>
                 }
                 
               

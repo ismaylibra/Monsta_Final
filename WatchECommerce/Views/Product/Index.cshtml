@@ -1,5 +1,5 @@
 ﻿
-  
+  @model List<Product>
 <!--breadcrumbs area start-->
     <div class="breadcrumbs_area">
         <div class="container">   
@@ -27,36 +27,11 @@
                     <!--shop wrapper start-->
                     <!--shop toolbar start-->
                     <div class="shop_toolbar">
-                        <div class="list_button">
-                            <ul class="nav" role="tablist">
-                                <li>
-                                    <a class="active" data-bs-toggle="tab" href="#large" role="tab" aria-controls="large" aria-selected="true"><i class="ion-grid"></i></a>
-                                </li>
-                                <li>
-                                    <a data-bs-toggle="tab" href="#list" role="tab" aria-controls="list" aria-selected="false"><i class="ion-ios-list-outline"></i> </a>
-                                </li>
-                            </ul>
-                        </div>
+                    
                         <div class="orderby_wrapper">
-                            <h3>Sort By : </h3>
-                            <div class=" niceselect_option">
-
-                                <form class="select_option" action="#">
-
-                                    <select name="orderby" id="short">
-                                        <option selected value="1">Sort by popularity</option>
-                                        <option  value="2">Sort by popularity</option>
-                                        <option value="3">Sort by newness</option>
-                                        <option value="4">Sort by price: low to high</option>
-                                        <option value="5">Sort by price: high to low</option>
-                                        <option value="6">Product Name: Z</option>
-                                    </select>
-                                </form>
-
-
-                            </div>
+                       
                             <div class="page_amount">
-                                <p>Showing 1–9 of 21 results</p>
+                                <p>Showing @Model.Count of Product results</p>
                             </div>
                         </div>
                     </div>

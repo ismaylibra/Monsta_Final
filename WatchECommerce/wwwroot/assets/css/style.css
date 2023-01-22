@@ -8098,6 +8098,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
         font-weight: 500;
         -webkit-transition: 0.3s;
         transition: 0.3s;
+        border: 1px solid #c09578;
     }
 
         .widget_list.widget_filter form button:hover {
@@ -8113,11 +8114,11 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
         display: block;
         font-size: 14px;
         font-weight: 400;
-        border: 1px solid #ebebeb;
-        background: #ffffff;
+        border: 1px solid #C09578;
+        background: #242424;
         padding: 8px 14px;
         line-height: 20px;
-        color: #5a5a5a;
+        color: #ebebeb;
         text-transform: capitalize;
         border-radius: 3px;
     }
@@ -8130,7 +8131,6 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 
 .tag_widget ul li a:hover {
     background: #c09578;
-    color: #fff;
     border-color: #c09578;
 }
 
@@ -11665,7 +11665,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .breadcrumb_content h3 {
-    color: #ebebeb;
+    color: #ebebeb !important;
     font-size: 36px;
     text-transform: capitalize;
     font-weight: 700;
