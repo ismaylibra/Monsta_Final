@@ -1,4 +1,5 @@
-﻿<!doctype html>
+﻿
+<!doctype html>
 <html class="no-js" lang="en">
 
 
@@ -178,24 +179,33 @@
                                     <li class="top_links">
                                         @if(User.Identity.IsAuthenticated)
                                         {
-                                                <a href="#">
-                                                    
-                                                    @User.Identity.Name <i class="ion-chevron-down"></i></a>
+                                        <a href="#">
+                                           @User.Identity.Name
+                                            
+                                            <i class="ion-chevron-down"></i></a>
                                         }
                                         else
                                         {
-                                             <a href="#">My Account <i class="ion-chevron-down"></i></a>
+                                             <a href="#">Account <i class="ion-chevron-down"></i></a>
                                         }
+                                  
                                        
                                         <ul class="dropdown_links">
                                             @if (User.Identity.IsAuthenticated)
-                                            {
-                                                <li><a asp-controller="account" asp-action="logout">Logout </a></li>
-                                            }
-                                            
-                                            <li><a asp-controller="account" asp-action="login">My Account </a></li>
+                                        {
+                                              <li><a asp-controller="Account" asp-action="ChangePassword">Change Password</a></li>
+                                              <li><a asp-controller="Account" asp-action="logout">Log Out </a></li>
+                                        }
+                                        else
+                                        {
+
+                                        <li><a asp-controller="Account" asp-action="Login">Log In </a></li>
+                                        }
                                               <li><a asp-controller="account" asp-action="register">Register </a></li>
-                                            <li><a href="wishlist.html">Wishlist</a></li>
+                                            
+                                           
+                                           
+                                            
                                         </ul>
                                     </li>
 
@@ -500,6 +510,7 @@
     <script src="~/assets/js/bpopup.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/assets/js/basket.js"></script>
 
     <!-- Main JS -->
     <script src="~/assets/js/main.js"></script>

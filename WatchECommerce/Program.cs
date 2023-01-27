@@ -4,12 +4,13 @@ using System;
 using Watch.BLL.Data;
 using Watch.Core.IdentityModels;
 using Watch.DAL.DAL;
+using Watch.DAL.Data;
 
 namespace WatchECommerce
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -17,23 +18,32 @@ namespace WatchECommerce
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<WatchDbContext>(options =>
             {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-                   
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
+
+                     builder =>
+                     {
+                         builder.MigrationsAssembly(nameof(WatchECommerce)); ;
+                     }
+
+
+                    );
+
+
             });
 
             builder.Services.AddIdentity<User, IdentityRole>(options =>
             {
-                options.SignIn.RequireConfirmedEmail = false;
-                options.Lockout.MaxFailedAccessAttempts = 3;
-                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(3);
 
                 options.Password.RequireLowercase = false;
                 options.Password.RequireUppercase = false;
                 options.Password.RequireNonAlphanumeric = false;
 
                 options.User.RequireUniqueEmail = true;
-            })
-                .AddEntityFrameworkStores<WatchDbContext>();
+            }).AddEntityFrameworkStores<WatchDbContext>().AddDefaultTokenProviders();
+
+            builder.Services.Configure<AdminUser>(builder.Configuration.GetSection("AdminUser"));
 
             var app = builder.Build();
 
@@ -44,6 +54,7 @@ namespace WatchECommerce
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            
 
             Constants.RootPath = builder.Environment.WebRootPath;
             Constants.SliderPath = Path.Combine(Constants.RootPath, "assets", "img", "slider");
@@ -51,11 +62,20 @@ namespace WatchECommerce
             Constants.BlogPath = Path.Combine(Constants.RootPath, "assets", "img", "blog");
             Constants.ProductImagePath = Path.Combine(Constants.RootPath, "assets", "img", "product");
             Constants.AboutPath = Path.Combine(Constants.RootPath, "assets", "img", "about");
-            Constants.UserPath = Path.Combine(Constants.RootPath, "assets", "img", "user");
+            Constants.UserImagePath = Path.Combine(Constants.RootPath, "assets", "img", "user");
+
 
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var serviceProvider = scope.ServiceProvider;
+
+                var dataInitalizer = new DataInitializer(serviceProvider);
+                await dataInitalizer.SeedData();
+            }
 
             app.UseRouting();
 
@@ -76,7 +96,7 @@ namespace WatchECommerce
 
 
 
-            app.Run();
+            await app.RunAsync();
 
         }
     }

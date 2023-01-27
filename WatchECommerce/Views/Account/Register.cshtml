@@ -1,5 +1,5 @@
 ﻿@model RegisterViewModel
- <!--breadcrumbs area start-->
+<!--breadcrumbs area start-->
 <div class="breadcrumbs_area">
     <div class="container">
         <div class="row">
@@ -21,18 +21,18 @@
 <div class="customer_login">
     <div class="container">
         <div class="row  d-flex justify-content-center">
-          
+
             <!--register area start-->
-            <div class="col-lg-6 col-md-12 ">
+            <div class="col-lg-8 col-md-8 ">
                 <div class="account_form register">
                     <h2>Register</h2>
-                    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                        <p style="color:#fff;"> Already have an account ? <a style="color:#c09578;"  asp-controller="account" asp-action="login">Login instead!</a></p>
                     <form method="post" asp-action="register" enctype="multipart/form-data">
-                        
+                        <div class="text-danger" asp-validation-summary="All"></div>
                         <div class="form-group">
                             <label asp-for="Image"></label>
-                            
-                            <input asp-for="Image" type="file" class="form-control">
+
+                            <input asp-for="Image"  class="form-control" accept="image/*">
                             <span class="text-danger" asp-validation-for="Image"></span>
                         </div>
 
@@ -51,6 +51,11 @@
                             <input asp-for="UserName" class="form-control" placeholder="Enter your username...">
                             <span class="text-danger" asp-validation-for="UserName"></span>
                         </div>
+                         <div class="form-group">
+                            <label asp-for="Address">Address <span>*</span></label>
+                            <input asp-for="Address" class="form-control" placeholder="Enter your adress...">
+                            <span class="text-danger" asp-validation-for="Address"></span>
+                        </div>
                         <div class="form-group">
                             <label asp-for="BirthDate">BirthDate <span>*</span></label>
                             <input asp-for="BirthDate" class="form-control" placeholder="Enter your birthdate...">
@@ -58,7 +63,7 @@
                         </div>
                         <div class="form-group">
                             <label asp-for="Gender">Gender</label>
-                            <select asp-for="Gender"   class="form-control genderSelect">
+                            <select asp-for="Gender" class="form-control genderSelect">
                                 <option disabled="disabled" selected="selected">Select Your Gender</option>
                                 <option value="true">Male</option>
                                 <option value="false">Female</option>
@@ -66,11 +71,11 @@
                             <span class="text-danger" asp-validation-for="Gender" class="text-danger"></span>
                         </div>
                         <div class="form-group mt-3">
-                            <label asp-for="Email">Email <span>*</span></label>
+                            <label asp-for="Email">Email Adress <span>*</span></label>
                             <input asp-for="Email" class="form-control" placeholder="Enter your e-mail...">
                             <span class="text-danger" asp-validation-for="Email"></span>
                         </div>
-                           <p>
+                        <p>
                             <label asp-for="Password">Password <span>*</span></label>
                             <input asp-for="Password" class="form-control" placeholder="Enter your password...">
                             <span class="text-danger" asp-validation-for="Password"></span>
@@ -90,4 +95,3 @@
         </div>
     </div>
 </div>
-<!-- customer login end -->
