@@ -37,7 +37,6 @@ namespace Watch.DAL.Data
 
             foreach (var role in roles)
             {
-                if (await _roleManager.RoleExistsAsync(role)) continue;
 
                 var result = await _roleManager.CreateAsync(new IdentityRole { Name = role });
 
@@ -49,17 +48,16 @@ namespace Watch.DAL.Data
                         Console.WriteLine(error.Description);
                     }
                 }
+
                 var userExist = await _userManager.FindByNameAsync(_adminUser.Username);
 
-                if (userExist is not null)
-                    return;
-
+                if (userExist is not null) return;
+              
                 var userResult = await _userManager.CreateAsync(new User
                 {
                     UserName = _adminUser.Username,
                     Email = _adminUser.Email
                 }, _adminUser.Password);
-
                 if (!userResult.Succeeded)
                 {
                     foreach (var error in userResult.Errors)

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using Watch.BLL.Data;
+using Watch.BLL.Services;
 using Watch.Core.IdentityModels;
 using Watch.DAL.DAL;
 using Watch.DAL.Data;
@@ -16,20 +17,7 @@ namespace WatchECommerce
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            builder.Services.AddDbContext<WatchDbContext>(options =>
-            {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
-
-                     builder =>
-                     {
-                         builder.MigrationsAssembly(nameof(WatchECommerce)); ;
-                     }
-
-
-                    );
-
-
-            });
+            builder.Services.AddDbContext<WatchDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             builder.Services.AddIdentity<User, IdentityRole>(options =>
             {
@@ -42,6 +30,9 @@ namespace WatchECommerce
 
                 options.User.RequireUniqueEmail = true;
             }).AddEntityFrameworkStores<WatchDbContext>().AddDefaultTokenProviders();
+
+            builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
+            builder.Services.AddTransient<IMailService, MailManager>();
 
             builder.Services.Configure<AdminUser>(builder.Configuration.GetSection("AdminUser"));
 

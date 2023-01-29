@@ -46,7 +46,7 @@
                             <span asp-validation-for="Password" class="text-danger"></span>
                         </p>
                         <div class="login_submit">
-                            <a href="#">Lost your password?</a>
+                            <a asp-controller="account" asp-action="forgetPassword">Lost your password?</a>
                             <label asp-for="RememberMe">
                                 <input asp-for="RememberMe" />
                                 Remember me

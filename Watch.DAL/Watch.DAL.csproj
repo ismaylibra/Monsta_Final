@@ -22,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Watch.BLL\Watch.BLL.csproj" />
     <ProjectReference Include="..\Watch.Core\Watch.Core.csproj" />
   </ItemGroup>
 

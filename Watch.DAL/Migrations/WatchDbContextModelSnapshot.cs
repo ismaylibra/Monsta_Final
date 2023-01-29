@@ -184,7 +184,7 @@ namespace Watch.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AboutPages");
+                    b.ToTable("AboutPages", (string)null);
                 });
 
             modelBuilder.Entity("Watch.Core.Entities.AboutWorkers", b =>
@@ -216,7 +216,7 @@ namespace Watch.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AboutWorkers");
+                    b.ToTable("AboutWorkers", (string)null);
                 });
 
             modelBuilder.Entity("Watch.Core.Entities.Banner", b =>
@@ -248,7 +248,7 @@ namespace Watch.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Banners");
+                    b.ToTable("Banners", (string)null);
                 });
 
             modelBuilder.Entity("Watch.Core.Entities.Blog", b =>
@@ -296,7 +296,7 @@ namespace Watch.DAL.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Blogs");
+                    b.ToTable("Blogs", (string)null);
                 });
 
             modelBuilder.Entity("Watch.Core.Entities.BlogCategory", b =>
@@ -316,7 +316,7 @@ namespace Watch.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("BlogCategories");
+                    b.ToTable("BlogCategories", (string)null);
                 });
 
             modelBuilder.Entity("Watch.Core.Entities.Brand", b =>
@@ -336,7 +336,7 @@ namespace Watch.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Brands");
+                    b.ToTable("Brands", (string)null);
                 });
 
             modelBuilder.Entity("Watch.Core.Entities.CategoryProduct", b =>
@@ -362,7 +362,7 @@ namespace Watch.DAL.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("CategoryProducts");
+                    b.ToTable("CategoryProducts", (string)null);
                 });
 
             modelBuilder.Entity("Watch.Core.Entities.Color", b =>
@@ -382,7 +382,7 @@ namespace Watch.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Colors");
+                    b.ToTable("Colors", (string)null);
                 });
 
             modelBuilder.Entity("Watch.Core.Entities.Product", b =>
@@ -418,7 +418,7 @@ namespace Watch.DAL.Migrations
 
                     b.HasIndex("BrandId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("Watch.Core.Entities.ProductCategory", b =>
@@ -438,7 +438,7 @@ namespace Watch.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductCategories");
+                    b.ToTable("ProductCategories", (string)null);
                 });
 
             modelBuilder.Entity("Watch.Core.Entities.ProductColor", b =>
@@ -464,7 +464,7 @@ namespace Watch.DAL.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductColor");
+                    b.ToTable("ProductColor", (string)null);
                 });
 
             modelBuilder.Entity("Watch.Core.Entities.ProductImage", b =>
@@ -489,7 +489,7 @@ namespace Watch.DAL.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductImages");
+                    b.ToTable("ProductImages", (string)null);
                 });
 
             modelBuilder.Entity("Watch.Core.Entities.Slider", b =>
@@ -523,7 +523,7 @@ namespace Watch.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sliders");
+                    b.ToTable("Sliders", (string)null);
                 });
 
             modelBuilder.Entity("Watch.Core.Entities.WhyUs", b =>
@@ -551,7 +551,7 @@ namespace Watch.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("WhyUs");
+                    b.ToTable("WhyUs", (string)null);
                 });
 
             modelBuilder.Entity("Watch.Core.Entities.WhyUsShortInfo", b =>
@@ -579,7 +579,7 @@ namespace Watch.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("whyUsShortInfos");
+                    b.ToTable("whyUsShortInfos", (string)null);
                 });
 
             modelBuilder.Entity("Watch.Core.IdentityModels.User", b =>
@@ -603,6 +603,10 @@ namespace Watch.DAL.Migrations
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("EmailConfirmationToken")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");

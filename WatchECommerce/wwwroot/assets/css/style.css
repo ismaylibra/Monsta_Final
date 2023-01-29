@@ -6180,7 +6180,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
         }
 
 .action_links ul li {
-    display: inline-block;
+    display: inline-block !important;
 }
 
     .action_links ul li.add_to_cart a {
@@ -6198,7 +6198,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
         width: 35px;
         background: #f1f1f1;
         color: #666;
-        display: block;
+        display: block !important;
         text-align: center;
     }
 
