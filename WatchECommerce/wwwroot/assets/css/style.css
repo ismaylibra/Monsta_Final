@@ -6183,7 +6183,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     display: inline-block !important;
 }
 
-    .action_links ul li.add_to_cart a {
+    .action_links ul li.add_to_cart button {
         line-height: 35px;
         padding: 0 18px;
         font-family: "Playfair Display", serif;
@@ -6192,7 +6192,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
         font-size: 12px;
     }
 
-    .action_links ul li a {
+    .action_links ul li button {
         line-height: 37px;
         height: 35px;
         width: 35px;
@@ -6202,7 +6202,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
         text-align: center;
     }
 
-        .action_links ul li a:hover {
+        .action_links ul li button:hover {
             background: #c09578;
             color: #ffffff;
         }
