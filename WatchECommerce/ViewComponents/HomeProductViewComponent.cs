@@ -18,6 +18,7 @@ namespace WatchECommerce.ViewComponents
             var product = await _dbContext.Products.Where(p => !p.IsDeleted)
                 .Include(p => p.ProductImages)
                 .Include(p => p.CategoryProducts).ThenInclude(p => p.Category)
+                .Include(p=>p.Brand)
                 .ToListAsync();
             return View(product);
         }

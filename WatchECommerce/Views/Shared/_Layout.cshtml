@@ -1,4 +1,4 @@
-﻿
+﻿@inject Watch.BLL.Services.LayoutService layoutService
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -229,23 +229,23 @@
                                     <img src="~/assets/img/icon/icon_phone.png" alt="">
                                 </div>
                                 <div class="contact_box">
-                                    <p>Free Support: <a href="tel:0123456789">0123456789</a> </p>
+                                <p>Free Support: <a href="tel:@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="phonenumber")?.Value">@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="phonenumber")?.Value</a> </p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-2 col-md-3 col-4">
                             <div class="logo">
-                                <a asp-controller="home" asp-action="index"><img src="~/assets/img/logo/logo-3.png" alt=""></a>
+                                <a asp-controller="home" asp-action="index"><img src="~/assets/img/logo/@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="headerlogo")?.Value" alt=""></a>
                             </div>
                         </div>
                         <div class="col-lg-5 col-md-7 col-6">
                             <div class="middel_right">
                                 <div class="search_btn">
-                                    <a href="#"><i class="ion-ios-search-strong"></i></a>
+                                <a href="#">@Html.Raw(@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="searchicon")?.Value)</a>
                                     <div class="dropdown_search">
                                         <form action="#">
                                             <input placeholder="Search product..." type="text">
-                                            <button type="submit"><i class="ion-ios-search-strong"></i></button>
+                                        <button type="submit">@Html.Raw(@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="searchicon")?.Value)</button>
                                         </form>
                                     </div>
                                 </div>

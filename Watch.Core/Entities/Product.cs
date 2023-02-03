@@ -14,6 +14,11 @@ namespace Watch.Core.Entities
         public string MainDescription { get; set; }
         public Brand Brand { get; set; }
         public int BrandId { get; set; }
+
+        public string MainImageUrl { get; set; }
+
+        public decimal? DiscountPrice { get; set; }
+
         public List<ProductImage> ProductImages { get; set; }
         public List<CategoryProduct> CategoryProducts { get; set; }
         public List<ProductColor> ProductColors { get; set; }   

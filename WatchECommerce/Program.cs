@@ -31,8 +31,10 @@ namespace WatchECommerce
                 options.User.RequireUniqueEmail = true;
             }).AddEntityFrameworkStores<WatchDbContext>().AddDefaultTokenProviders();
 
+            builder.Services.AddScoped<LayoutService>();
             builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
             builder.Services.AddTransient<IMailService, MailManager>();
+
 
             builder.Services.Configure<AdminUser>(builder.Configuration.GetSection("AdminUser"));
 
@@ -54,6 +56,8 @@ namespace WatchECommerce
             Constants.ProductImagePath = Path.Combine(Constants.RootPath, "assets", "img", "product");
             Constants.AboutPath = Path.Combine(Constants.RootPath, "assets", "img", "about");
             Constants.UserImagePath = Path.Combine(Constants.RootPath, "assets", "img", "user");
+            Constants.ProductMainImagePath = Path.Combine(Constants.RootPath, "assets", "img", "product");
+
 
 
 

@@ -30,5 +30,13 @@ namespace Watch.DAL.DAL
         public DbSet<WhyUs> WhyUs { get; set; }
         public DbSet<AboutWorkers> AboutWorkers { get; set; }
         public DbSet<WhyUsShortInfo> whyUsShortInfos { get; set; }
+        public DbSet<Setting> Settings { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Setting>().HasIndex(k => k.Key).IsUnique();
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

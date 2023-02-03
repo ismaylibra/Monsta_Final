@@ -40,6 +40,15 @@
 										</div>
 									</div>
 								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label asp-for="DiscountPrice" class="fw-700 fs-16 form-label"> Discount Price</label>
+										<div class="input-group">
+											<div class="input-group-addon"><i class="ti-money"></i></div>
+											<input asp-for="DiscountPrice" class="form-control" placeholder="Please, Enter  Price Of Product">
+										</div>
+									</div>
+								</div>
 								<!--/span-->
 								<div class="col-md-6">
 									<div class="form-group">
@@ -86,6 +95,22 @@
 									</div>
 								</div>
 							</div>
+									<div class="row">
+
+								<!--/span-->
+								<div class="col-md-4">
+									<h4 class="box-title mt-20">Product Images</h4>
+									<div class="product-img text-start">
+
+										<div class="input-group my-3">
+											<label asp-for="MainImage" class="input-group-text btn-primary" for="inputGroupFile01">Upload Main Image</label>
+											<input asp-for="MainImage" class="form-control" accept="image/*" id="inputGroupFile01">
+										</div>
+
+									</div>
+								</div>
+							</div>
+							
 
 						</div>
 						<div class="form-actions mt-10">

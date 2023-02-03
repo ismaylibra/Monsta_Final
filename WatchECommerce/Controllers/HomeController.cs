@@ -35,6 +35,7 @@ namespace WatchECommerce.Controllers
                 .Where(p => !p.IsDeleted)
                 .Include(p=>p.ProductImages)
                 .Include(p => p.CategoryProducts).ThenInclude(p => p.Category)
+                .Include(p=>p.Brand)
                 .OrderByDescending(p => p.Id)
                 .ToListAsync();
 

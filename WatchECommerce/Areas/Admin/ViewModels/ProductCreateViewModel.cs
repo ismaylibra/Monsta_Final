@@ -11,6 +11,8 @@ namespace WatchECommerce.Areas.Admin.ViewModels
         public string ShortDescription { get; set; }
         public string MainDescription { get; set; }
         public int BrandId { get; set; }
+        public IFormFile? MainImage { get; set; }
+        public decimal? DiscountPrice { get; set; }
         public List<SelectListItem>? Brands { get; set; }
         public IFormFile[] Images { get; set; }
         public List<SelectListItem>? Categories { get; set; }

@@ -32,10 +32,9 @@
 								<div class="col-md-4 col-sm-6">
 									<div class="box box-body b-1 text-center no-shadow">
 
-										@foreach (var item in Model.ProductImages.Take(1))
-										{
-											<img src="~/assets/img/product/@item.Name" id="product-image" class="img-fluid" alt="" />
-										}
+										
+											<img src="~/assets/img/product/@Model.MainImageUrl" id="product-image" class="img-fluid" alt="" />
+									
 										
 									</div>
 									<div class="pro-photos">
@@ -51,7 +50,7 @@
 									<div class="clear"></div>
 								</div>
 								<div class="col-md-8 col-sm-6">
-									<h2 class="box-title mt-0">@Model.Name</h2>
+									<h2 class="box-title mt-0">@Model.Brand.Name</h2>
 									<div class="list-inline">
 										<a class="text-warning"><i class="fa-solid fa-star"></i></a>
 										<a class="text-warning"><i class="fa-solid fa-star"></i></a>
@@ -64,7 +63,7 @@
 										
 									</h1>
 									<hr>
-									<p>@Model.ShortDescription</p>
+									<p>@Model.MainDescription</p>
 								
 									<hr>
 								
@@ -87,15 +86,15 @@
 													<td>Category</td>
 													<td> @foreach (var item in Model.CategoryProducts)
 														 {
-															 @item.Category.Name.Split(", ")
-														 } </td>
+															@item.Category.Name
+														} </td>
 												</tr>
 												<tr>
 													<td>Color</td>
 													<td> @foreach (var item in Model.ProductColors)
 														 {
-															 @item.Color.Name.Split(", ")
-														 } </td>
+															@item.Color.Name
+														} </td>
 												</tr>
 												
 

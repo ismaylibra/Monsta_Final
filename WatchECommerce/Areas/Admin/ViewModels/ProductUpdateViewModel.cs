@@ -7,10 +7,13 @@ namespace WatchECommerce.Areas.Admin.ViewModels
 	{
         public string Name { get; set; }
         public decimal Price { get; set; }
+        public decimal? DiscountPrice { get; set; }
         public string ShortDescription { get; set; }
         public string MainDescription { get; set; }
         public List<SelectListItem>? Brands { get; set; }
         public int BrandId { get; set; }
+        public string? MainImageUrl { get; set; }
+        public IFormFile? MainImage { get; set; }
         public string? RemovedImageIds { get; set; }
         public IFormFile[] Images { get; set; }
         public List<ProductImage>? ProductImages { get; set; }

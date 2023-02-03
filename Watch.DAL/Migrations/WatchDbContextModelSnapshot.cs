@@ -184,7 +184,7 @@ namespace Watch.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AboutPages", (string)null);
+                    b.ToTable("AboutPages");
                 });
 
             modelBuilder.Entity("Watch.Core.Entities.AboutWorkers", b =>
@@ -216,7 +216,7 @@ namespace Watch.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AboutWorkers", (string)null);
+                    b.ToTable("AboutWorkers");
                 });
 
             modelBuilder.Entity("Watch.Core.Entities.Banner", b =>
@@ -248,7 +248,7 @@ namespace Watch.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Banners", (string)null);
+                    b.ToTable("Banners");
                 });
 
             modelBuilder.Entity("Watch.Core.Entities.Blog", b =>
@@ -296,7 +296,7 @@ namespace Watch.DAL.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Blogs", (string)null);
+                    b.ToTable("Blogs");
                 });
 
             modelBuilder.Entity("Watch.Core.Entities.BlogCategory", b =>
@@ -316,7 +316,7 @@ namespace Watch.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("BlogCategories", (string)null);
+                    b.ToTable("BlogCategories");
                 });
 
             modelBuilder.Entity("Watch.Core.Entities.Brand", b =>
@@ -336,7 +336,7 @@ namespace Watch.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Brands", (string)null);
+                    b.ToTable("Brands");
                 });
 
             modelBuilder.Entity("Watch.Core.Entities.CategoryProduct", b =>
@@ -362,7 +362,7 @@ namespace Watch.DAL.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("CategoryProducts", (string)null);
+                    b.ToTable("CategoryProducts");
                 });
 
             modelBuilder.Entity("Watch.Core.Entities.Color", b =>
@@ -382,7 +382,7 @@ namespace Watch.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Colors", (string)null);
+                    b.ToTable("Colors");
                 });
 
             modelBuilder.Entity("Watch.Core.Entities.Product", b =>
@@ -396,10 +396,17 @@ namespace Watch.DAL.Migrations
                     b.Property<int>("BrandId")
                         .HasColumnType("int");
 
+                    b.Property<decimal?>("DiscountPrice")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("MainDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MainImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -418,7 +425,7 @@ namespace Watch.DAL.Migrations
 
                     b.HasIndex("BrandId");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("Watch.Core.Entities.ProductCategory", b =>
@@ -438,7 +445,7 @@ namespace Watch.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductCategories", (string)null);
+                    b.ToTable("ProductCategories");
                 });
 
             modelBuilder.Entity("Watch.Core.Entities.ProductColor", b =>
@@ -464,7 +471,7 @@ namespace Watch.DAL.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductColor", (string)null);
+                    b.ToTable("ProductColor");
                 });
 
             modelBuilder.Entity("Watch.Core.Entities.ProductImage", b =>
@@ -489,7 +496,34 @@ namespace Watch.DAL.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductImages", (string)null);
+                    b.ToTable("ProductImages");
+                });
+
+            modelBuilder.Entity("Watch.Core.Entities.Setting", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Key")
+                        .IsUnique();
+
+                    b.ToTable("Settings");
                 });
 
             modelBuilder.Entity("Watch.Core.Entities.Slider", b =>
@@ -523,7 +557,7 @@ namespace Watch.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sliders", (string)null);
+                    b.ToTable("Sliders");
                 });
 
             modelBuilder.Entity("Watch.Core.Entities.WhyUs", b =>
@@ -551,7 +585,7 @@ namespace Watch.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("WhyUs", (string)null);
+                    b.ToTable("WhyUs");
                 });
 
             modelBuilder.Entity("Watch.Core.Entities.WhyUsShortInfo", b =>
@@ -579,7 +613,7 @@ namespace Watch.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("whyUsShortInfos", (string)null);
+                    b.ToTable("whyUsShortInfos");
                 });
 
             modelBuilder.Entity("Watch.Core.IdentityModels.User", b =>
@@ -605,7 +639,6 @@ namespace Watch.DAL.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("EmailConfirmationToken")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("EmailConfirmed")

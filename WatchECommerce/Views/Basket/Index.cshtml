@@ -1,9 +1,9 @@
-﻿@model BasketItemViewModel
+﻿@*@model List<BasketItemViewModel>
 
 @{
     var basketItems = Model;
 }
- 
+
 <!--breadcrumbs area start-->
 <div class="breadcrumbs_area">
     <div class="container">
@@ -42,37 +42,26 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="product_remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                                        <td class="product_thumb"><a href="#"><img src="assets/img/s-product/product.jpg" alt=""></a></td>
-                                        <td class="product_name"><a href="#">Handbag fringilla</a></td>
-                                        <td class="product-price">£65.00</td>
-                                        <td class="product_quantity"><label>Quantity</label> <input min="0" max="100" value="1" type="number"></td>
-                                        <td class="product_total">£130.00</td>
+                                    @foreach (var basketItem in basketItems)
+                                    {
+                                        <tr>
+                                            <td class="product_remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
+                                            @foreach (var image in basketItem.ProductImages)
+                                            {
+
+                                                <td class="product_thumb"><a href="#"><img src="assets/img/product/@image.Name" alt=""></a></td>
+                                            }
+                                            <td class="product_name"><a href="#">@basketItem.Name</a></td>
+                                            <td class="product-price">£@basketItem.Price</td>
+                                            <td class="product_quantity"><label>Quantity</label> <input min="0" max="100" value="@basketItem.Count" type="number"></td>
+                                            <td class="product_total">£@(basketItem.Price * basketItem.Count)</td>
 
 
-                                    </tr>
-
-                                    <tr>
-                                        <td class="product_remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                                        <td class="product_thumb"><a href="#"><img src="assets/img/s-product/product2.jpg" alt=""></a></td>
-                                        <td class="product_name"><a href="#">Handbags justo</a></td>
-                                        <td class="product-price">£90.00</td>
-                                        <td class="product_quantity"><label>Quantity</label> <input min="0" max="100" value="1" type="number"></td>
-                                        <td class="product_total">£180.00</td>
+                                        </tr>
+                                    }
 
 
-                                    </tr>
-                                    <tr>
-                                        <td class="product_remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                                        <td class="product_thumb"><a href="#"><img src="assets/img/s-product/product5.jpg" alt=""></a></td>
-                                        <td class="product_name"><a href="#">Handbag elit</a></td>
-                                        <td class="product-price">£80.00</td>
-                                        <td class="product_quantity"><label>Quantity</label> <input min="0" max="100" value="1" type="number"></td>
-                                        <td class="product_total">£160.00</td>
 
-
-                                    </tr>
 
                                 </tbody>
                             </table>
@@ -126,4 +115,4 @@
         </form>
     </div>
 </div>
-<!--shopping cart area end -->
+<!--shopping cart area end -->*@

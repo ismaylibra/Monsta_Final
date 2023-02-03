@@ -10,10 +10,9 @@
 			<div class="col-12 col-lg-6 col-xl-4">
 				<div class="box">
 					<div class="fx-card-item">
-						@foreach (var item in product?.ProductImages.Take(1))
-						{
+						
 						<div class="fx-card-avatar fx-overlay-1">
-							<img src="~/assets/img/product/@item.Name" alt="user" class="bbsr-0 bber-0">
+							<img src="~/assets/img/product/@product.MainImageUrl" alt="user" class="bbsr-0 bber-0">
 							<div class="fx-overlay scrl-up">
 								<ul class="fx-info">
 
@@ -26,12 +25,12 @@
 								</ul>
 							</div>
 						</div>	
-						}
+						
 						
 						<div class="fx-card-content text-start">
 							<div class="product-text">
 								<h2 class="pro-price text-blue">$ @product.Price</h2>
-								<h4 class="box-title mb-0">@product.Name</h4>
+								<h4 class="box-title mb-0">@product.Brand.Name</h4>
 								@{
 									string description = (product.ShortDescription.Length < 20) ? product.ShortDescription : product.ShortDescription.Substring(0, 20) + "...";
 								}

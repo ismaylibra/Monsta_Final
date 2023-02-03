@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System.Reflection.Metadata;
 using Watch.BLL.Data;
 using Watch.BLL.Extensions;
 using Watch.Core.Entities;
@@ -22,7 +23,7 @@ namespace WatchECommerce.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var products = await _dbContext.Products.Where(p => !p.IsDeleted).Include(x=>x.ProductImages).OrderByDescending(p=>p.Id).ToListAsync();
+            var products = await _dbContext.Products.Where(p => !p.IsDeleted).Include(x=>x.ProductImages).Include(p=>p.Brand).OrderByDescending(p=>p.Id).ToListAsync();
             return View(products);
         }
         public async Task<IActionResult> Details(int? id)
@@ -75,19 +76,19 @@ namespace WatchECommerce.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProductCreateViewModel model)
         {
-           
+
             var createdProduct = new Product
             {
-
                 Name = model.Name,
-                Price=model.Price,
-                ShortDescription = model.ShortDescription,
+                Price = model.Price,
+                DiscountPrice = model.DiscountPrice,
                 MainDescription = model.MainDescription,
-                ProductImages = new List<ProductImage>(),
-                BrandId =model.BrandId
-
-                
+                ShortDescription = model.ShortDescription,
+                BrandId = model.BrandId,
+                ProductImages = new List<ProductImage>()
             };
+           
+
             if (!ModelState.IsValid) return View(model);
             var productImage = new List<ProductImage>();
             foreach (var item in model.Images)
@@ -112,8 +113,23 @@ namespace WatchECommerce.Areas.Admin.Controllers
             }
 
             createdProduct.ProductImages.AddRange(productImage);
-           
-         
+
+            if (!model.MainImage.IsImage())
+            {
+                ModelState.AddModelError("Image", " An Image Must be Selected..!");
+                return View(model);
+            }
+
+            if (!model.MainImage.IsAllowedSize(20))
+            {
+                ModelState.AddModelError("Image", "Image Size Can be Maximum 20mb..!");
+                return View(model);
+            }
+
+            var unicalFileName1 = await model.MainImage.GenerateFile(Constants.ProductMainImagePath);
+
+            createdProduct.MainImageUrl = unicalFileName1;
+
             List<ProductColor> productColors = new List<ProductColor>();
 
             foreach (var colorId in model.ColorIds)
@@ -131,9 +147,7 @@ namespace WatchECommerce.Areas.Admin.Controllers
             var colorSelectListItem = new List<SelectListItem>();
             colors.ForEach(c => colorSelectListItem.Add(new SelectListItem(c.Name, c.Id.ToString())));
             createdProduct.ProductColors = productColors;
-            model.Colors = colorSelectListItem;
-            
-
+            model.Colors = colorSelectListItem;  
 
 
 
@@ -175,6 +189,8 @@ namespace WatchECommerce.Areas.Admin.Controllers
 
 
             };
+
+          
             await _dbContext.Products.AddAsync(createdProduct);
             await _dbContext.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -192,20 +208,27 @@ namespace WatchECommerce.Areas.Admin.Controllers
                 .ThenInclude(c=>c.Color)
                 .Include(p => p.Brand)
                 .FirstOrDefaultAsync();
+
             if (product is null) return NotFound();
+
             if (product.Id != id) return BadRequest();
+
             var categories = await _dbContext.ProductCategories 
                 .Where(c => !c.IsDeleted)
                 .ToListAsync();
+
             if (categories is null) return NotFound();
    
             var brands = await _dbContext.Brands
                 .Where(b=>!b.IsDeleted)
                 .ToListAsync();
+
             if (brands is null) return NotFound();
+
             var colors = await _dbContext.Colors
                 .Where(c => !c.IsDeleted)
                 .ToListAsync();
+
             if (colors is null) return NotFound();
 
             var selectedCategories = new List<SelectListItem>();
@@ -229,7 +252,8 @@ namespace WatchECommerce.Areas.Admin.Controllers
                 Brands = selectedBrands,
                 Categories = selectedCategories,
                 Colors=selectedColors,
-                ProductImages = product.ProductImages
+                ProductImages = product.ProductImages,
+                MainImageUrl = product.MainImageUrl
 
             };
 
@@ -239,7 +263,6 @@ namespace WatchECommerce.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        
         public async Task<IActionResult> Update(int? id, ProductUpdateViewModel model)
         {
 
@@ -285,6 +308,7 @@ namespace WatchECommerce.Areas.Admin.Controllers
             model.Colors = selectedColors;
             model.Categories = selectedCategories;
             model.ProductImages = product.ProductImages;
+            model.DiscountPrice = product.DiscountPrice;
 
             if (!ModelState.IsValid) return View(model);
 
@@ -306,17 +330,50 @@ namespace WatchECommerce.Areas.Admin.Controllers
                     ModelState.AddModelError("Image", "Image size can be maximum 20mb..!");
                     return View(model);
                 }
-                var unicalFileName = await item.GenerateFile(Constants.ProductImagePath);
+                var unicalFileNames = await item.GenerateFile(Constants.ProductImagePath);
                 productImage.Add( new ProductImage
                 {
-                    Name = unicalFileName,
+                    Name = unicalFileNames,
                     ProductId = product.Id
                 });
             }
+
+           
+            }
+            else
+            {
+                model.ProductImages = product.ProductImages;
             }
 
 
             product.ProductImages.AddRange(productImage);
+
+            if(model.MainImage is not null)
+            {
+                if (!model.MainImage.IsImage())
+                {
+                    ModelState.AddModelError("Image", " An Image Must be Selected..!");
+                    return View(model);
+                }
+
+                if (!model.MainImage.IsAllowedSize(20))
+                {
+                    ModelState.AddModelError("Image", "Image Size Can be Maximum 20mb..!");
+                    return View(model);
+                }
+                var unicalFileName1 = await model.MainImage.GenerateFile(Constants.ProductMainImagePath);
+                model.MainImageUrl = unicalFileName1;
+            }
+            else
+            {
+                model.MainImageUrl = product.MainImageUrl;
+            }
+
+            
+
+           
+
+            
 
             if (model.RemovedImageIds is not null)
             {
@@ -374,14 +431,16 @@ namespace WatchECommerce.Areas.Admin.Controllers
             }
 
 
-          
 
-           
+            
+
+
             product.Name = model.Name;
             product.ShortDescription = model.ShortDescription;
             product.MainDescription = model.MainDescription;
             product.Price = model.Price;
             product.BrandId = model.BrandId;
+            
             
             
             await _dbContext.SaveChangesAsync();
@@ -425,8 +484,14 @@ namespace WatchECommerce.Areas.Admin.Controllers
                 if (System.IO.File.Exists(eventImage))
                     System.IO.File.Delete(eventImage);
             }
-           
-          
+
+            var path = Path.Combine(Constants.RootPath, "assets", "img", "product", existedProduct.MainImageUrl);
+
+            var result = System.IO.File.Exists(path);
+            if (result)
+            {
+                System.IO.File.Delete(path);
+            }
 
             _dbContext.Products.Remove(existedProduct);
             await _dbContext.SaveChangesAsync();
