@@ -34,6 +34,7 @@ namespace WatchECommerce
             builder.Services.AddScoped<LayoutService>();
             builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
             builder.Services.AddTransient<IMailService, MailManager>();
+            builder.Services.AddHttpContextAccessor();
 
 
             builder.Services.Configure<AdminUser>(builder.Configuration.GetSection("AdminUser"));

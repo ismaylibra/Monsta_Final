@@ -31,7 +31,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Watch.BLL\Watch.BLL.csproj" />
-    <ProjectReference Include="..\Watch.DAL\Watch.DAL.csproj" />
   </ItemGroup>
 
 </Project>

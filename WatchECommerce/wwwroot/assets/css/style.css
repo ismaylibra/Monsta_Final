@@ -6183,7 +6183,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     display: inline-block !important;
 }
 
-    .action_links ul li.add_to_cart button {
+    .action_links ul li.add_to_cart a {
         line-height: 35px;
         padding: 0 18px;
         font-family: "Playfair Display", serif;
@@ -6192,7 +6192,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
         font-size: 12px;
     }
 
-    .action_links ul li button {
+    .action_links ul li a {
         line-height: 37px;
         height: 35px;
         width: 35px;
@@ -10061,8 +10061,8 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .checkout_form input {
-    border: 1px solid #ebebeb;
-    background: none;
+    border: 1px solid #c09578;
+    background-color:#b4b4b4;
     height: 40px;
     width: 100%;
     padding: 0 20px;
@@ -10084,7 +10084,7 @@ input[type=number]::-webkit-outer-spin-button {
     }
 
 .checkout_form label {
-    color: #242424;
+    color: #c09578;
     font-family: "Playfair Display", serif;
     font-weight: 700;
     margin-bottom: 7px;
@@ -10206,7 +10206,7 @@ input[type=number]::-webkit-outer-spin-button {
         }
 
         .order_table table tfoot tr th {
-            color: #242424;
+            color: #ebebeb;
             font-family: "Playfair Display", serif;
             min-width: 50%;
             text-align: center;
@@ -10219,6 +10219,7 @@ input[type=number]::-webkit-outer-spin-button {
             text-align: center;
             padding: 15px 0;
             border-bottom: 1px solid #ddd;
+            color:#FFF !important;
         }
 
 .panel-default input[type="radio"] {
@@ -10745,7 +10746,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .table-responsive table tbody tr td {
     border-right: 1px solid #ebebeb;
-    color: #212121;
+    color: #c09578;
     font-weight: 500;
     text-transform: capitalize;
     font-size: 14px;

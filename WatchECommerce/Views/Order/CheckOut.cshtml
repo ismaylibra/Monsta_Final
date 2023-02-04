@@ -1,0 +1,120 @@
+﻿@model Order 
+
+
+<!--breadcrumbs area start-->
+<div class="breadcrumbs_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <h3>Checkout</h3>
+                    <ul>
+                        <li><a href="index.html">home</a></li>
+                        <li>></li>
+                        <li>Checkout</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--breadcrumbs area end-->
+<!--Checkout page section-->
+<div class="Checkout_section" id="accordion">
+    <div class="container">
+        
+        <div class="checkout_form">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <form asp-controller="order" asp-action="checkout" method="post">
+                        <div asp-validation-for="All" class="text-danger"></div>
+                        <h3>Billing Details</h3>
+                        <div class="row">
+
+                            
+                          
+                            
+
+                            <div class="col-12 mb-20">
+                                <label asp-for="Address">Address  <span>*</span></label>
+                                <input asp-for="Address" placeholder="Enter Address">
+                            </div>
+                            
+                            <div class="col-lg-6 mb-20">
+                                <label asp-for="PhoneNumber">Phone<span>*</span></label>
+                                <input asp-for="PhoneNumber">
+
+                            </div>
+                            
+                            <div class="col-12 mb-20">
+                                <a asp-controller="account" asp-action="register" style="color:#c09578; font-weight:bolder;">Create an account?</a>
+
+                                  
+                                </div>
+                            <div class="col-12">
+                                <div class="order-notes">
+                                    <label for="order_note">Order Notes</label>
+                                    <textarea id="order_note" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-12 mt-5">
+                                <button class="btn btn-success col-md-12 col-lg-12" type="submit">PLACE ORDER</button>
+                          </div>
+
+                        </div>
+                           
+                          
+                            
+                      
+                    </form>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <form action="#">
+                        <h3>Your order</h3>
+                        <div class="order_table table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.BasketItems)
+                                    {
+                                        <tr>
+                                            <td> @item.Product.Name <strong> × @item.Quantity</strong></td>
+                                            if(@item.Product.DiscountPrice>0)
+                                            {
+                                                
+                                            <td>$ @(item.Product.Price-item.Product.DiscountPrice)</td>
+                                            }
+                                            else{
+                                            <td>$ @(item.Product.Price)</td>
+                                            }
+                                        </tr>
+                                    }
+                                    
+                                   
+                                </tbody>
+                                <tfoot>
+                                   
+                                 
+                                    <tr class="order_total">
+                                        <th>Order Total</th>
+                                  
+                                        <td><strong>$@Model.TotalPrice</strong></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                       
+                    </form>
+                </div>
+
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Checkout page section end-->

@@ -31,6 +31,8 @@ namespace Watch.DAL.DAL
         public DbSet<AboutWorkers> AboutWorkers { get; set; }
         public DbSet<WhyUsShortInfo> whyUsShortInfos { get; set; }
         public DbSet<Setting> Settings { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<BasketItem> BasketItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
