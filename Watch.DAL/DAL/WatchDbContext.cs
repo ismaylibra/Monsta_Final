@@ -33,6 +33,10 @@ namespace Watch.DAL.DAL
         public DbSet<Setting> Settings { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<BasketItem> BasketItems { get; set; }
+        public DbSet<WishList> WishLists { get; set; }
+        public DbSet<WishListProduct> WishListProducts { get; set; }
+        public DbSet<ContactMessage> ContactMessages { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

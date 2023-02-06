@@ -1,9 +1,4 @@
-﻿@*@model List<BasketItemViewModel>
-
-@{
-    var basketItems = Model;
-}
-
+﻿@*@inject Watch.BLL.Services.LayoutService layoutService
 <!--breadcrumbs area start-->
 <div class="breadcrumbs_area">
     <div class="container">
@@ -12,7 +7,7 @@
                 <div class="breadcrumb_content">
                     <h3>Shopping Cart</h3>
                     <ul>
-                        <li><a asp-controller="home" asp-action="home">home</a></li>
+                        <li><a href="index.html">home</a></li>
                         <li>></li>
                         <li>Shopping Cart</li>
                     </ul>
@@ -42,26 +37,22 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var basketItem in basketItems)
+                                    @foreach (BasketItemViewModel product in layoutService.GetBasket().BasketItemViewModels)
                                     {
-                                        <tr>
-                                            <td class="product_remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                                            @foreach (var image in basketItem.ProductImages)
-                                            {
-
-                                                <td class="product_thumb"><a href="#"><img src="assets/img/product/@image.Name" alt=""></a></td>
-                                            }
-                                            <td class="product_name"><a href="#">@basketItem.Name</a></td>
-                                            <td class="product-price">£@basketItem.Price</td>
-                                            <td class="product_quantity"><label>Quantity</label> <input min="0" max="100" value="@basketItem.Count" type="number"></td>
-                                            <td class="product_total">£@(basketItem.Price * basketItem.Count)</td>
+                                    <tr>
+                                        <td class="product_remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
+                                        <td class="product_thumb"><a href="#"><img src="assets/img/product/@product.Product.MainImageUrl alt=""></a></td>
+                                        <td class="product_name"><a href="#">@product.Product.Brand.Name</a></td>
+                                        <td class="product-price">£65.00</td>
+                                        <td class="product_quantity"><label>Quantity</label> <input min="0" max="100" value="1" type="number"></td>
+                                        <td class="product_total">£130.00</td>
 
 
-                                        </tr>
+                                    </tr>
+
                                     }
 
-
-
+                                    
 
                                 </tbody>
                             </table>

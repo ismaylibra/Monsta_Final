@@ -247,7 +247,7 @@
                                 </div>
                             </div>
                             <div class="wishlist_btn">
-                                <a href="wishlist.html"><i class="ion-heart"></i></a>
+                                <a asp-controller="wishlist" asp-action="index"><i class="ion-heart"></i></a>
                             </div>
                             <div class="cart_link">
                                 <a href="#"><i class="ion-android-cart"></i><span class="cart_text_quantity"> $@(layoutService.GetBasket() != null ? layoutService.GetBasket().TotalPrice : (decimal)default)</span> <i class="fa fa-angle-down"></i></a>
@@ -520,6 +520,7 @@
     <script src="~/assets/js/bpopup.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/assets/js/wishlist.js" asp-append-version="true"></script>
     <script src="~/assets/js/basket.js" asp-append-version="true"></script>
 
     <!-- Main JS -->

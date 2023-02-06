@@ -21,6 +21,11 @@ namespace WatchECommerce.Controllers
             _dbContext = dbContext;
             _userManager = userManager;
         }
+
+        public async Task<IActionResult> Index()
+        {
+            return View();
+        }
          public async Task<IActionResult> AddToBasket(int? id)
         {
             if (id is null || id == 0) return NotFound();
@@ -157,6 +162,8 @@ namespace WatchECommerce.Controllers
             return Json(basket);
 
         }
+
+
 
     }
 }

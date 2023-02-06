@@ -423,6 +423,37 @@ namespace Watch.DAL.Migrations
                     b.ToTable("Colors");
                 });
 
+            modelBuilder.Entity("Watch.Core.Entities.ContactMessage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Subject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ContactMessages");
+                });
+
             modelBuilder.Entity("Watch.Core.Entities.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -693,6 +724,52 @@ namespace Watch.DAL.Migrations
                     b.ToTable("whyUsShortInfos");
                 });
 
+            modelBuilder.Entity("Watch.Core.Entities.WishList", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WishLists");
+                });
+
+            modelBuilder.Entity("Watch.Core.Entities.WishListProduct", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WishListId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("WishListId");
+
+                    b.ToTable("WishListProducts");
+                });
+
             modelBuilder.Entity("Watch.Core.IdentityModels.User", b =>
                 {
                     b.Property<string>("Id")
@@ -935,6 +1012,25 @@ namespace Watch.DAL.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("Watch.Core.Entities.WishListProduct", b =>
+                {
+                    b.HasOne("Watch.Core.Entities.Product", "Product")
+                        .WithMany("WishListProducts")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Watch.Core.Entities.WishList", "WishList")
+                        .WithMany("WishListProducts")
+                        .HasForeignKey("WishListId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("WishList");
+                });
+
             modelBuilder.Entity("Watch.Core.Entities.BlogCategory", b =>
                 {
                     b.Navigation("Blogs");
@@ -962,11 +1058,18 @@ namespace Watch.DAL.Migrations
                     b.Navigation("ProductColors");
 
                     b.Navigation("ProductImages");
+
+                    b.Navigation("WishListProducts");
                 });
 
             modelBuilder.Entity("Watch.Core.Entities.ProductCategory", b =>
                 {
                     b.Navigation("CategoryProducts");
+                });
+
+            modelBuilder.Entity("Watch.Core.Entities.WishList", b =>
+                {
+                    b.Navigation("WishListProducts");
                 });
 
             modelBuilder.Entity("Watch.Core.IdentityModels.User", b =>

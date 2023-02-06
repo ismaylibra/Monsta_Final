@@ -21,8 +21,10 @@ namespace Watch.Core.Entities
 
         public List<ProductImage> ProductImages { get; set; }
         public List<CategoryProduct> CategoryProducts { get; set; }
-        public List<ProductColor> ProductColors { get; set; }   
-      
+        public List<ProductColor> ProductColors { get; set; }
+        public List<WishListProduct> WishListProducts { get; set; }
+
+
 
     }
 }

@@ -9639,7 +9639,7 @@ input[type=number]::-webkit-outer-spin-button {
         }
 
             .table_desc .cart_page table tbody tr td.product_name a {
-                color: #242424;
+                color: #c09578;
                 text-transform: capitalize;
                 font-size: 14px;
                 font-weight: 400;
@@ -9651,7 +9651,7 @@ input[type=number]::-webkit-outer-spin-button {
 
         .table_desc .cart_page table tbody tr td.product-price {
             min-width: 130px;
-            color: #242424;
+            color: #FFF;
             font-size: 16px;
             font-weight: 500;
         }
