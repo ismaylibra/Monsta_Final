@@ -10316,7 +10316,7 @@ input[type=number]::-webkit-outer-spin-button {
 .contact_message h3 {
     font-size: 21px;
     text-transform: capitalize;
-    color: #242424;
+    color: #c09578 !important;
     font-weight: 700;
     line-height: 20px;
     margin-bottom: 25px;
@@ -10332,7 +10332,7 @@ input[type=number]::-webkit-outer-spin-button {
 .contact_message p {
     font-size: 14px;
     line-height: 24px;
-    color: #212121;
+    color: #c09578 !important;
     margin-bottom: 20px;
 }
 
@@ -10359,7 +10359,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .contact_message label {
     line-height: 18px;
-    color: #212121;
+    color: #ebebeb !important;
     font-weight: 500;
     margin-bottom: 10px;
 }
@@ -10391,8 +10391,8 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 0 30px;
     text-transform: capitalize;
     border: none;
-    background: #242424;
-    color: #ffffff;
+    background: #c09578;
+    color: #09578;
     cursor: pointer;
     -webkit-transition: 0.3s;
     transition: 0.3s;
@@ -10400,7 +10400,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
     .contact_message button:hover {
-        background: #c09578;
+        background: #5a5a5a;
     }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
