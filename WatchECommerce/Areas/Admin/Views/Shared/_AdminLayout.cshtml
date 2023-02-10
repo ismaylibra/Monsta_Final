@@ -21,7 +21,9 @@
     <link rel="stylesheet" href="~/admin/assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="~/admin/assets/css/skin_color.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.1.96/css/materialdesignicons.min.css" integrity="sha512-NaaXI5f4rdmlThv3ZAVS44U9yNWJaUYWzPhvlg5SC7nMRvQYV9suauRK3gVbxh7qjE33ApTPD+hkOW78VSHyeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
      @await RenderSectionAsync("Styles",false);
+
 </head>
 
 <body class="hold-transition dark-skin sidebar-mini theme-primary fixed">
@@ -64,7 +66,11 @@
                                 <i data-feather="maximize"></i>
                             </a>
                         </li>
-
+                        <li class="btn-group nav-item d-inline-flex">
+                            <a href="#" data-toggle="control-sidebar" class="waves-effect waves-light nav-link full-screen" title="Setting">
+                                <i data-feather="settings"></i>
+                            </a>
+                        </li>
 
                         <li class="dropdown notifications-menu">
                             <a href="#" class="waves-effect waves-light dropdown-toggle" data-bs-toggle="dropdown" title="Notifications">
@@ -533,6 +539,37 @@
           
             &copy; 2022 Ismayil Ibra. All Rights Reserved.
         </footer>
+
+        <aside class="control-sidebar">
+           
+            <div class="rpanel-title"><span class="pull-right btn btn-circle btn-danger"> <i class="fa-solid fa-xmark text-white" data-toggle="control-sidebar"></i></span> </div>  <!-- Create the tabs -->
+            <ul class="nav nav-tabs control-sidebar-tabs">
+                <li class="nav-item"><a href="#control-sidebar-home-tab" data-bs-toggle="tab" class="active"><i class="fa-solid fa-user"></i></a></li>
+               
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <!-- Home tab content -->
+                <div class="tab-pane active" id="control-sidebar-home-tab">
+                    <div class="flexbox">
+                        <a href="javascript:void(0)" class="text-grey">
+                            <i class="ti-more"></i>
+                        </a>
+                        <p>Users</p>
+                        <a href="javascript:void(0)" class="text-end text-grey"><i class="ti-plus"></i></a>
+                    </div>
+                    <div class="lookup lookup-sm lookup-right d-none d-lg-block">
+                        <input type="text" name="s" placeholder="Search" class="w-p100">
+                    </div>
+                        @await Component.InvokeAsync("UserList")
+
+                </div>
+                <!-- /.tab-pane -->
+                <!-- Settings tab content -->
+                
+                <!-- /.tab-pane -->
+            </div>
+        </aside>
     </div>
    
     <script src="~/admin/assets/js/vendors.min.js"></script>

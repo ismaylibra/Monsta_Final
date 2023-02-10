@@ -251,7 +251,7 @@ namespace Watch.DAL.Migrations
                     b.ToTable("Banners");
                 });
 
-            modelBuilder.Entity("Watch.Core.Entities.BasketItem", b =>
+            modelBuilder.Entity("Watch.Core.Entities.Basket", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -262,31 +262,42 @@ namespace Watch.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("OrderId")
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Baskets");
+                });
+
+            modelBuilder.Entity("Watch.Core.Entities.BasketProduct", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("BasketId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderId");
+                    b.HasIndex("BasketId");
 
                     b.HasIndex("ProductId");
 
-                    b.HasIndex("UserId");
-
-                    b.ToTable("BasketItems");
+                    b.ToTable("BasketProducts");
                 });
 
             modelBuilder.Entity("Watch.Core.Entities.Blog", b =>
@@ -455,45 +466,6 @@ namespace Watch.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ContactMessages");
-                });
-
-            modelBuilder.Entity("Watch.Core.Entities.Order", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("Status")
-                        .HasColumnType("bit");
-
-                    b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("Watch.Core.Entities.Product", b =>
@@ -910,11 +882,13 @@ namespace Watch.DAL.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Watch.Core.Entities.BasketItem", b =>
+            modelBuilder.Entity("Watch.Core.Entities.BasketProduct", b =>
                 {
-                    b.HasOne("Watch.Core.Entities.Order", null)
-                        .WithMany("BasketItems")
-                        .HasForeignKey("OrderId");
+                    b.HasOne("Watch.Core.Entities.Basket", "Basket")
+                        .WithMany("BasketProducts")
+                        .HasForeignKey("BasketId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Watch.Core.Entities.Product", "Product")
                         .WithMany()
@@ -922,15 +896,9 @@ namespace Watch.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Watch.Core.IdentityModels.User", "User")
-                        .WithMany("BasketItems")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Basket");
 
                     b.Navigation("Product");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Watch.Core.Entities.Blog", b =>
@@ -961,17 +929,6 @@ namespace Watch.DAL.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("Watch.Core.Entities.Order", b =>
-                {
-                    b.HasOne("Watch.Core.IdentityModels.User", "User")
-                        .WithMany("Orders")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Watch.Core.Entities.Product", b =>
@@ -1034,6 +991,11 @@ namespace Watch.DAL.Migrations
                     b.Navigation("WishList");
                 });
 
+            modelBuilder.Entity("Watch.Core.Entities.Basket", b =>
+                {
+                    b.Navigation("BasketProducts");
+                });
+
             modelBuilder.Entity("Watch.Core.Entities.BlogCategory", b =>
                 {
                     b.Navigation("Blogs");
@@ -1047,11 +1009,6 @@ namespace Watch.DAL.Migrations
             modelBuilder.Entity("Watch.Core.Entities.Color", b =>
                 {
                     b.Navigation("ProductColors");
-                });
-
-            modelBuilder.Entity("Watch.Core.Entities.Order", b =>
-                {
-                    b.Navigation("BasketItems");
                 });
 
             modelBuilder.Entity("Watch.Core.Entities.Product", b =>
@@ -1073,13 +1030,6 @@ namespace Watch.DAL.Migrations
             modelBuilder.Entity("Watch.Core.Entities.WishList", b =>
                 {
                     b.Navigation("WishListProducts");
-                });
-
-            modelBuilder.Entity("Watch.Core.IdentityModels.User", b =>
-                {
-                    b.Navigation("BasketItems");
-
-                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }

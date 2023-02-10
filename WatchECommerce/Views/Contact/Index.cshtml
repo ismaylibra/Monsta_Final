@@ -74,15 +74,31 @@
                     <h3>Tell us your project</h3>
                     <form method="POST"  asp-action="SendMessage">
                        
+                        @if(User.Identity.IsAuthenticated)
+                        {
                             <p>
                                 <label asp-for="ContactMessage.Name"> Your Name (required)</label>
 
-                                <input asp-for="ContactMessage.Name" placeholder="Name *"  value="@contactMessage.Name" >
+                                <input asp-for="ContactMessage.Name" placeholder="Name *" value="@contactMessage.Name" readonly>
                             </p>
                             <p>
                                 <label asp-for="ContactMessage.Email">  Your Email (required)</label>
-                                <input asp-for="ContactMessage.Email" placeholder="Email *" value="@contactMessage.Email" >
+                                <input asp-for="ContactMessage.Email" placeholder="Email *" value="@contactMessage.Email" readonly>
                             </p>
+                        }
+                        else
+                        {
+                            <p>
+                                <label asp-for="ContactMessage.Name"> Your Name (required)</label>
+
+                                <input asp-for="ContactMessage.Name" placeholder="Name *"  >
+                            </p>
+                            <p>
+                                <label asp-for="ContactMessage.Email">  Your Email (required)</label>
+                                <input asp-for="ContactMessage.Email" placeholder="Email *">
+                            </p>
+                        }
+                           
                    
                        
                         <p>

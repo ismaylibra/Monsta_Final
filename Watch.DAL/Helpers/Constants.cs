@@ -23,5 +23,7 @@ namespace Watch.BLL.Data
         public const string UserRole = "User";
 
         public const string WISH_LIST_COOKIE_NAME = "WISHLIST";
+        public const string BASKET_COOKIE_NAME = "BASKET";
+
     }
 }

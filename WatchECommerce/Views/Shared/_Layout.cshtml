@@ -10,11 +10,10 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="icon" href="~/assets/img/@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="headerlogo")?.Value">
 
 
     <link rel="stylesheet" href="~/assets/css/plugins.css">
-
+    <link rel="icon" href="~/assets/img/logo/images.png" />
 
     <link rel="stylesheet" href="~/assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -44,22 +43,7 @@
 
                         <div class="top_right text-right">
                             <ul>
-                                <li class="language">
-                                    <a href="#"> English <i class="ion-chevron-down"></i></a>
-                                    <ul class="dropdown_language">
-                                        <li><a href="#"> French</a></li>
-                                        <li><a href="#">Germany</a></li>
-                                        <li><a href="#">Japanese</a></li>
-                                    </ul>
-                                </li>
-                                <li class="currency">
-                                    <a href="#">USD <i class="ion-chevron-down"></i></a>
-                                    <ul class="dropdown_currency">
-                                        <li><a href="#">EUR – Euro</a></li>
-                                        <li><a href="#">GBP – British Pound</a></li>
-                                        <li><a href="#">INR – India Rupee</a></li>
-                                    </ul>
-                                </li>
+                             
                                 <li class="top_links">
                                     <a href="#">My Account <i class="ion-chevron-down"></i></a>
                                     <ul class="dropdown_links">
@@ -145,9 +129,9 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="social_icone">
                             <ul>
-                                <li><a href="#"><i class="fa-brands fa-facebook"></i></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
                                 <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-instagram"></i></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
                                 <li><a href="#"><i class="fa-brands fa-linkedin"></i></a></li>
                                 <li><a href="#"><i class="ion-social-rss"></i></a></li>
                             </ul>
@@ -156,22 +140,7 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="top_right text-right">
                             <ul>
-                                <li class="language">
-                                    <a href="#"> English <i class="ion-chevron-down"></i></a>
-                                    <ul class="dropdown_language">
-                                        <li><a href="#"> French</a></li>
-                                        <li><a href="#">Germany</a></li>
-                                        <li><a href="#">Japanese</a></li>
-                                    </ul>
-                                </li>
-                                <li class="currency">
-                                    <a href="#">USD <i class="ion-chevron-down"></i></a>
-                                    <ul class="dropdown_currency">
-                                        <li><a href="#">EUR – Euro</a></li>
-                                        <li><a href="#">GBP – British Pound</a></li>
-                                        <li><a href="#">INR – India Rupee</a></li>
-                                    </ul>
-                                </li>
+                              
                                 <li class="top_links">
                                     @if (User.Identity.IsAuthenticated)
                                     {
@@ -240,9 +209,9 @@
                             <div class="search_btn">
                                 <a href="#">@Html.Raw(@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="searchicon")?.Value)</a>
                                 <div class="dropdown_search">
-                                    <form action="#">
-                                        <input placeholder="Search product..." type="text">
-                                        <button type="submit">@Html.Raw(@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="searchicon")?.Value)</button>
+                                    <form id="search" action="#">
+                                        <input id="search-products" placeholder="Search product..." type="text">
+                                        <div id="product-list"></div>
                                     </form>
                                 </div>
                             </div>
@@ -250,8 +219,8 @@
                                 <a asp-controller="wishlist" asp-action="index"><i class="ion-heart"></i></a>
                             </div>
                             <div class="cart_link">
-                                <a href="#"><i class="ion-android-cart"></i><span class="cart_text_quantity"> $@(layoutService.GetBasket() != null ? layoutService.GetBasket().TotalPrice : (decimal)default)</span> <i class="fa fa-angle-down"></i></a>
-                                <span class="cart_quantity">@(layoutService.GetBasket() != null ? layoutService.GetBasket().BasketItemViewModels.Count.ToString() : "0")</span>
+                                <a href="#"><i class="ion-android-cart"></i><span class="cart_text_quantity"> $138.00</span> <i class="fa fa-angle-down"></i></a>
+                                <span class="cart_quantity">2</span>
                                 <!--mini cart-->
                                 <div class="mini_cart">
                                     <div class="cart_close">
@@ -262,53 +231,37 @@
                                             <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
                                         </div>
                                     </div>
-                                    @if (layoutService.GetBasket() is not null)
-                                    {
-
-                                        foreach (BasketItemViewModel product in layoutService.GetBasket().BasketItemViewModels)
-                                        {
-                                            <div class="cart_item">
-                                                <div class="cart_img">
-                                                    <a href="#"><img src="~/assets/img/product/@product.Product.MainImageUrl" alt=""></a>
-                                                </div>
-                                                <div class="cart_info">
-                                                    <a asp-controller="product" asp-action="details" asp-route-id="@product.Product.Id" >@product.Product.Brand.Name</a>
-
-                                                    <span class="quantity">Qty:@product.Quantity</span>
-                                                    @{
-                                                        var productPrice = (decimal)default;
-                                                        if(product.Product.DiscountPrice>0)
-                                                        {
-                                                            productPrice= (decimal)(product.Product.Price - product.Product.DiscountPrice);
-                                                        }
-                                                        else{
-                                                            productPrice = product.Product.Price;
-                                                        }
-                                                    }
-                                                    <span class="price_cart">$@productPrice</span>
-
-                                                </div>
-                                                <div class="cart_remove">
-                                                    <a href="#"><i class="ion-android-close"></i></a>
-                                                </div>
-                                            </div>
-                                        }
-                                    }
-                                    else
-                                    {
-
-                                        <div class="alert alert-danger text-center" role="alert">
-                                           There is no product in basket <br><br>
-                                           <a asp-controller="product" asp-action="index"><i class="fa-solid fa-cart-shopping"></i>
-                                              Let's start shopping    
-                                           </a>
+                                    <div class="cart_item">
+                                        <div class="cart_img">
+                                            <a href="#"><img src="assets/img/s-product/product.jpg" alt=""></a>
                                         </div>
-                                    }
+                                        <div class="cart_info">
+                                            <a href="#">Letraset animal</a>
 
+                                            <span class="quantity">Qty: 1</span>
+                                            <span class="price_cart">$60.00</span>
 
+                                        </div>
+                                        <div class="cart_remove">
+                                            <a href="#"><i class="ion-android-close"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="cart_item">
+                                        <div class="cart_img">
+                                            <a href="#"><img src="assets/img/s-product/product2.jpg" alt=""></a>
+                                        </div>
+                                        <div class="cart_info">
+                                            <a href="#">Natural passages</a>
+                                            <span class="quantity">Qty: 1</span>
+                                            <span class="price_cart">$69.00</span>
+                                        </div>
+                                        <div class="cart_remove">
+                                            <a href="#"><i class="ion-android-close"></i></a>
+                                        </div>
+                                    </div>
                                     <div class="cart_total">
                                         <span>Subtotal:</span>
-                                        <span>@(layoutService.GetBasket() != null ? layoutService.GetBasket().TotalPrice : (decimal)default ) $</span>
+                                        <span>138.00</span>
                                     </div>
                                     <div class="mini_cart_footer">
                                         <div class="cart_button view_cart">
@@ -380,16 +333,15 @@
                         <div class="widgets_container contact_us">
                             <h3>About Monsta</h3>
                             <div class="footer_contact">
-                                <p>Address: Your address goes here.</p>
-                                <p>Phone: <a href="tel:0123456789">0123456789</a></p>
-                                <p>Email: demo@example.com</p>
+                                <p>Address: @layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="companyaddress")?.Value</p>
+                                <p>Phone: <a href="tel:@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="phonenumber")?.Value">@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="phonenumber")?.Value</a></p>
+                                <p>Email: @layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="companyemail")?.Value</p>
                                 <ul>
-                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="ion-social-rss"></i></a></li>
-                                    <li><a href="#"><i class="ion-social-googleplus"></i></a></li>
+                                    <li><a href="@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="fburl")?.Value" target="_blank">@Html.Raw(@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="fbicon")?.Value)</a></li>
+                                    <li><a href="@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="githuburl")?.Value" target="_blank">@Html.Raw(@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="githubicon")?.Value)</a></li>
+                                    <li><a href="@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="g+url")?.Value" target="_blank">@Html.Raw(@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="g+icon")?.Value)</a></li>
 
-                                    <li><a href="#"><i class="ion-social-youtube"></i></a></li>
+                                    <li><a href="@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="yturl")?.Value" target="_blank">@Html.Raw(@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="yticon")?.Value)</a></li>
                                 </ul>
 
                             </div>
@@ -400,12 +352,10 @@
                             <h3>Information</h3>
                             <div class="footer_menu">
                                 <ul>
-                                    <li><a href="about.html">About Us</a></li>
-                                    <li><a href="blog.html">blog</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                    <li><a href="services.html">Services</a></li>
-                                    <li><a href="#">Sample Page</a></li>
-                                    <li><a href="portfolio.html">Portfolio</a></li>
+                                    <li><a asp-controller="aboutpage" asp-action="index">About Us</a></li>
+                                    <li><a asp-controller="blog" asp-action="index">blog</a></li>
+                                    <li><a asp-controller="contact" asp-action="index">Contact</a></li>
+                                    <li><a asp-controller="portfolio" asp-action="index">Portfolio</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -415,10 +365,10 @@
                             <h3>My Account</h3>
                             <div class="footer_menu">
                                 <ul>
-                                    <li><a href="my-account.html">My Account</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                    <li><a href="wishlist.html">Wishlist</a></li>
-                                    <li><a href="portfolio.html">Portfolio</a></li>
+                                    <li><a asp-controller="account" asp-action="login">My Account</a></li>
+                                    <li><a asp-controller="contact" asp-action="index">Contact</a></li>
+                                    <li><a asp-controller="wishlist" asp-action="index">Wishlist</a></li>
+                                    <li><a asp-controller="portfolio" asp-action="index">Portfolio</a></li>
                                     <li><a href="checkout.html">Checkout</a></li>
                                     <li><a href="faq.html">Frequently Questions</a></li>
                                 </ul>
@@ -475,14 +425,14 @@
                     <div class="col-12">
                         <div class="footer_middel_menu">
                             <ul>
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">Online Store</a></li>
-                                <li><a href="#">Promotion</a></li>
-                                <li><a href="#">Privacu Policy</a></li>
-                                <li><a href="#">Terms Of Use</a></li>
-                                <li><a href="#">Sitemap</a></li>
-                                <li><a href="#">Support</a></li>
-                                <li><a href="#">Contacts</a></li>
+                                <li><a asp-controller="home" asp-action="index">Home</a></li>
+                                <li><a asp-controller="product" asp-action="index">Online Store</a></li>
+                                <li><a asp-controller="home" asp-action="index">Promotion</a></li>
+                                <li><a asp-controller="home" asp-action="index">Privacu Policy</a></li>
+                                <li><a asp-controller="home" asp-action="index">Terms Of Use</a></li>
+                                <li><a asp-controller="about" asp-action="index">Sitemap</a></li>
+                                <li><a asp-controller="home" asp-action="index">Support</a></li>
+                                <li><a asp-controller="about" asp-action="index">Contacts</a></li>
                             </ul>
                         </div>
                     </div>
@@ -493,7 +443,7 @@
                     <div class="col-12">
                         <div class="copyright_area">
                             <p>&copy; 2022 <a asp-controller="home" asp-action="index" class="text-uppercase">MONSTA</a>. Made  by <a target="_blank" href="#">Ismayil Ibra</a></p>
-                            <img src="~/assets/img/icon/papyel2.png" alt="">
+                          
                         </div>
                     </div>
                 </div>
@@ -521,6 +471,7 @@
     <script src="~/assets/js/bpopup.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+     <script src="~/assets/js/search.js" asp-append-version="true"></script>
     <script src="~/assets/js/wishlist.js" asp-append-version="true"></script>
     <script src="~/assets/js/basket.js" asp-append-version="true"></script>
 

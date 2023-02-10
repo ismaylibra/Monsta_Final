@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Watch.Core.Entities;
 using Watch.DAL.DAL;
 using WatchECommerce.ViewModels;
 
@@ -106,8 +107,30 @@ namespace WatchECommerce.Controllers
             return View(model);
         }
 
+        public async Task<IActionResult> Search(string searchText)
+        {
+            if (string.IsNullOrEmpty(searchText))
+                return NoContent();
 
- 
+            var products = await _dbContext.Products
+                .Where(product => !product.IsDeleted && product.Brand.Name.ToLower().StartsWith(searchText.ToLower()))
+                .Include(p=>p.Brand)
+                .ToListAsync();
+
+            var model = new List<Product>();
+
+            products.ForEach(product => model.Add(new Product
+            {
+                Id = product.Id,
+                Name = product.Brand.Name,
+                MainImageUrl = product.MainImageUrl,
+            }));
+
+            return PartialView("_ProductSearchPartial", products);
+        }
+
+
+
 
     }
 }

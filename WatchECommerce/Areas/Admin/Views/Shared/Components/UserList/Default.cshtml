@@ -1,0 +1,25 @@
+﻿@model List<User>
+
+<div class="media-list media-list-hover mt-20">
+
+    @foreach (var item in Model)
+    {
+         <div class="media py-10 px-0">
+        <a class="avatar avatar-lg status-success" href="#">
+            <img src="~/assets/img/user/@item.ImageUrl"  alt="...">
+        </a>
+        <div class="media-body">
+            <p class="fs-16">
+                <a class="hover-primary" href="#"><strong>@item.UserName</strong></a>
+            </p>
+            <p></p>
+         
+            <span>@(item.FirstName + " " + item.LastName)</span>
+        </div>
+    </div>
+    }
+   
+
+  
+
+</div>

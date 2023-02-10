@@ -63,6 +63,7 @@ namespace WatchECommerce
 
 
             app.UseHttpsRedirection();
+            app.UseStatusCodePagesWithReExecute("/ErrorPage/ErrorAction", "?code={0}");
             app.UseStaticFiles();
 
             using (var scope = app.Services.CreateScope())

@@ -1,13 +1,29 @@
-const addToCartBtns = document.querySelectorAll(".add_to_cartBtn");
+$(document).on('click', '#add-product-to-cart', function () {
+
+    var productId = $(this).parent().children().val();
+    console.log(productId)
+    $.ajax({
+        type: "POST",
+        url: '/Basket/AddToBasket',
+        data: { productId: productId },
+        success: function () {
+        },
+    });
+
+})
 
 
-function addToCart(ev) {
-    
-    const productId = ev.target.getAttribute("data-id");
+$(document).on('change', '#product-quality-from-icon', function () {
+    var productId = $(this).parent().children().val();
+    var count = $(this).val();
 
-    fetch(`/basket/AddToBasket?productId=${productId}`).then(response => {
-        console.log(response);
-    })
-}
-addToCartBtns.forEach(addToCartBtn => addToCartBtn.addEventListener("click", addToCart))
+    $.ajax({
+        type: "POST",
+        url: '/Basket/ChangeProductQuality',
+        data: { productId: productId, count: count },
+        success: function () {
+        },
+    });
 
+
+});

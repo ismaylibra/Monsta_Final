@@ -8777,10 +8777,6 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 }
 
 
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-}
 
     @media only screen and (min-width: 992px) and (max-width: 1199px) {
         .product_variant.quantity input {
@@ -13015,7 +13011,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .error_form h2 {
-    color: #212121;
+    color: #ebebeb !important;
     font-size: 24px;
     text-transform: uppercase;
     font-weight: 500;

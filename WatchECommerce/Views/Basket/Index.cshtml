@@ -1,4 +1,4 @@
-﻿@*@inject Watch.BLL.Services.LayoutService layoutService
+﻿@model List<BasketProductViewModel>
 <!--breadcrumbs area start-->
 <div class="breadcrumbs_area">
     <div class="container">
@@ -37,22 +37,33 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (BasketItemViewModel product in layoutService.GetBasket().BasketItemViewModels)
+
+                                    @foreach (var item in Model)
                                     {
-                                    <tr>
-                                        <td class="product_remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                                        <td class="product_thumb"><a href="#"><img src="assets/img/product/@product.Product.MainImageUrl alt=""></a></td>
-                                        <td class="product_name"><a href="#">@product.Product.Brand.Name</a></td>
-                                        <td class="product-price">£65.00</td>
-                                        <td class="product_quantity"><label>Quantity</label> <input min="0" max="100" value="1" type="number"></td>
-                                        <td class="product_total">£130.00</td>
+                                        <tr id=@(item.Id+"tbody")>
+
+                                            <td class="product_remove">
+                                                <input type="hidden" value="@item.Id" />
+                                                <a href="#">
+                                                    <i id="remove-from-cart" class="fa fa-trash-o"></i>
+
+                                                </a>
+                                            </td>
+                                            <td class="product_thumb"><a href="#"><img src="~/assets/img/product/@item.MainImageUrl" alt=""></a></td>
+                                            <td class="product_name"><a href="#">@item.Name</a></td>
+                                            <td id="product_price" data-id="@item.Price" class="product-price">£@item.Price</td>
+                                            <td class="product_quantity">
+                                                <label>Quantity</label>
+                                                <input id="product-quality" min="0" max="100" value="@item.Count" type="number">
+                                                </td>
+                                            <td id=@("product-total-price" + item.Id) class="product_total">£@(item.Price * item.Count)</td>
 
 
-                                    </tr>
-
+                                        </tr>
                                     }
 
-                                    
+
+
 
                                 </tbody>
                             </table>
@@ -106,4 +117,46 @@
         </form>
     </div>
 </div>
-<!--shopping cart area end -->*@
+<!--shopping cart area end -->
+@section Scripts{
+    <script>
+
+        $(document).on('click', '#remove-from-cart', function () {
+            var productId = $(this).parent().parent().parent().children().children().val();
+            console.log(productId)
+
+            $.ajax({
+                type: "POST",
+                url: "/Basket/DeleteProductBasket",
+                data: { productId: productId },
+                success: function () {
+                    $("#" + productId + "tbody").remove();
+                },
+                Error: function () {
+                    alert("Somthing Wrong");
+                }
+            });
+        });
+
+        $(document).on('change', '#product-quality', function () {
+            var productId = $(this).parent().parent().children().children().val();
+            var count = $(this).val();
+            var price = $("#product_price").attr("data-id");
+            var totalPrice = price * count;
+
+            $.ajax({
+                type: "POST",
+                url: "/Basket/ChangeProductQuality",
+                data: { productId: productId, count: count },
+                success: function () {
+                    $("#" + "product-total-price" + productId).html(totalPrice);
+                },
+                Error: function () {
+                    alert("Somthing Wrong");
+                }
+            });
+
+
+        });
+    </script>
+}
