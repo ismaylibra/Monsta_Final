@@ -1,6 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using Watch.BLL.Data;
 using Watch.Core.Entities;
+using Watch.Core.IdentityModels;
 using Watch.DAL.DAL;
 using WatchECommerce.ViewModels;
 
@@ -9,10 +13,11 @@ namespace WatchECommerce.Controllers
     public class ProductController : Controller
     {
         private readonly WatchDbContext _dbContext;
-
-        public ProductController(WatchDbContext dbContext)
+        private readonly UserManager<User> _userManager;
+        public ProductController(WatchDbContext dbContext, UserManager<User> userManager)
         {
             _dbContext = dbContext;
+            _userManager = userManager;
         }
 
         public async Task<IActionResult> Index()
@@ -24,6 +29,53 @@ namespace WatchECommerce.Controllers
                 .Include(p => p.ProductImages)
                 .Include(p => p.Brand)
                 .ToListAsync();
+
+            if (User.Identity.IsAuthenticated)
+            {
+
+                var user = await _userManager.FindByNameAsync(User.Identity.Name);
+
+                var wishList = await _dbContext
+                    .WishLists
+                    .Where(x => x.UserId == user.Id)
+                    .Include(x => x.WishListProducts)
+                    .ThenInclude(x => x.Product)
+                    .FirstOrDefaultAsync();
+
+                if (wishList != null)
+                {
+                    foreach (var WishlisProducts in wishList.WishListProducts)
+                    {
+                        var product = await _dbContext.Products.
+                            Where(p => p.Id == WishlisProducts.Product.Id)
+                            .FirstOrDefaultAsync();
+
+                        if (product is not null)
+                        {
+                            product.IsLike = true;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (Request.Cookies.TryGetValue(Constants.WISH_LIST_COOKIE_NAME, out var cookie))
+                {
+                    var productIdList = JsonConvert.DeserializeObject<List<int>>(cookie);
+
+                    foreach (var productId in productIdList)
+                    {
+                        var product = await _dbContext.Products.
+                            Where(p => p.Id == productId)
+                            .FirstOrDefaultAsync();
+
+                        if (product is not null)
+                        {
+                            product.IsLike = true;
+                        }
+                    }
+                }
+            }
 
             return View(products);
         }

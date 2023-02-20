@@ -58,6 +58,8 @@ namespace WatchECommerce
             Constants.AboutPath = Path.Combine(Constants.RootPath, "assets", "img", "about");
             Constants.UserImagePath = Path.Combine(Constants.RootPath, "assets", "img", "user");
             Constants.ProductMainImagePath = Path.Combine(Constants.RootPath, "assets", "img", "product");
+            Constants.AdvertisementBannerPath = Path.Combine(Constants.RootPath, "assets", "img", "bg");
+
 
 
 

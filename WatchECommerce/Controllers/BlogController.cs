@@ -14,10 +14,20 @@ namespace WatchECommerce.Controllers
             _dbContext = dbContext;
         }
 
-        public async  Task<IActionResult> Index()
+        public async  Task<IActionResult> Index(int page = 1)
         {
             var blogs = await _dbContext.Blogs.Where(b => !b.IsDeleted).Include(b => b.Category).OrderByDescending(b=>b.Id).ToListAsync();
-            return View(blogs);
+
+            int perPage = 2;
+            int pageCount = (int)Math.Ceiling((double)blogs.Count() / perPage);
+
+            if (page <= 0) page = 1;
+            if (page > pageCount) page = pageCount;
+
+            ViewBag.CurrentPage = page;
+            ViewBag.PageCount = pageCount;
+
+            return View(blogs.Skip((page - 1) * perPage).Take(perPage).ToList());
         }
         public async Task<IActionResult> Details(int? id)
 

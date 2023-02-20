@@ -1,0 +1,48 @@
+﻿@{
+    List<Product> products = Model;
+
+}
+
+
+<div class="col-lg-4 col-md-6 col-sm-7">
+    <div class="widgets_container product_widget">
+        <h3>Top Rated Products</h3>
+        <div class="simple_product">
+            @foreach (var item in products.Take(2))
+            {
+                <div class="simple_product_items">
+                    <div class="simple_product_thumb">
+                        <a asp-controler="product" asp-action="details" asp-route-id="@item.Id"><img src="~/assets/img/product/@item.MainImageUrl" alt=""></a>
+                    </div>
+                    <div class="simple_product_content">
+                        <div class="tag_cate">
+                            @foreach (var cat in item.CategoryProducts)
+                           {
+
+                                <a asp-controller="product" asp-action="details" asp-route-id="@item.Id">@cat.Category.Name </a>
+                           }
+                          
+                        </div>
+                        <div class="product_name">
+                            <h3><a asp-controller="product" asp-action="details" asp-route-id="@item.Id">@item.Brand.Name</a></h3>
+                        </div>
+                        <div class="product_price">
+                            @if(item.DiscountPrice>0)
+                            {
+                            <span class="old_price">$@item.Price</span>
+                            <span class="current_price">$@(item.Price-item.DiscountPrice)</span>
+
+                            }
+                            else{
+                                <span class="current_price">$@item.Price</span>
+
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+           
+            
+        </div>
+    </div>
+</div>

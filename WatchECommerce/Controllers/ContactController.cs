@@ -28,7 +28,8 @@ namespace WatchECommerce.Controllers
                 model.ContactMessage = new ViewModels.ContactMessageViewModel
                 {
                     Name= user.UserName,
-                    Email = user.Email
+                    Email = user.Email,
+                    ImageUrl = user.ImageUrl
                 };
 
                
@@ -47,7 +48,8 @@ namespace WatchECommerce.Controllers
                 Name = model.ContactMessage.Name,
                 Subject = model.ContactMessage.Subject,
                 Email=model.ContactMessage.Email,
-                Message = model.ContactMessage.Message
+                Message = model.ContactMessage.Message,
+                ProfileImage = model.ContactMessage.ImageUrl
             };
 
             await _dbContext.ContactMessages.AddAsync(message);

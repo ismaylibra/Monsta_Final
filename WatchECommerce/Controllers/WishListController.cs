@@ -36,16 +36,19 @@ namespace WatchECommerce.Controllers
                     .ThenInclude(x => x.Product)
                     .FirstOrDefaultAsync();
 
-                foreach (var item in wishList.WishListProducts)
+                if (wishList?.WishListProducts is not null)
                 {
-                    model.Add(new WishListViewModel
+                    foreach (var item in wishList.WishListProducts)
                     {
-                        Id = item.ProductId,
-                        Name = item.Product.Name,
-                        Price = item.Product.Price,
-                        DiscountPrice =item.Product.DiscountPrice,
-                        ImageUrl = item.Product.MainImageUrl
-                    });
+                        model.Add(new WishListViewModel
+                        {
+                            Id = item.ProductId,
+                            Name = item.Product.Name,
+                            Price = item.Product.Price,
+                            DiscountPrice = item.Product.DiscountPrice,
+                            ImageUrl = item.Product.MainImageUrl
+                        });
+                    }
                 }
             }
             else
@@ -82,8 +85,8 @@ namespace WatchECommerce.Controllers
             if (productId == null) return NotFound();
             if (User.Identity.IsAuthenticated)
             {
-                var user= await _userManager.FindByNameAsync(User.Identity.Name);
-                if(user == null) return BadRequest();
+                var user = await _userManager.FindByNameAsync(User.Identity.Name);
+                if (user == null) return BadRequest();
 
                 var existWishList = await _dbContext
                     .WishLists
@@ -114,7 +117,7 @@ namespace WatchECommerce.Controllers
                         ProductId = existProduct.Id
                     });
 
-                     _dbContext.Update(existWishList);
+                    _dbContext.Update(existWishList);
 
                 }
                 else
@@ -175,7 +178,7 @@ namespace WatchECommerce.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteProductFromWishList(int? productId)
         {
-            if(productId == null) return NotFound();
+            if (productId == null) return NotFound();
 
             if (User.Identity.IsAuthenticated)
             {

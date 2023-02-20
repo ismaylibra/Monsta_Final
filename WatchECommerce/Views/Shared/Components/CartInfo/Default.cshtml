@@ -1,0 +1,113 @@
+﻿@model List<BasketProductViewModel>
+@{
+    decimal totalPrice = 0;
+    foreach (var product in Model)
+    {
+        totalPrice += product.Price * product.Count;
+
+    }
+
+}
+
+@if (Model is not null)
+{
+
+    <div class="cart_link">
+        <a href="#"><i class="ion-android-cart"></i><span class="cart_text_quantity"> $@totalPrice</span> <i class="fa fa-angle-down"></i></a>
+        <span class="cart_quantity">@Model.Count</span>
+        <!--mini cart-->
+        <div class="mini_cart">
+            <div class="cart_close">
+                <div class="cart_text">
+                    <h3>cart</h3>
+                </div>
+                <div class="mini_cart_close">
+                    <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
+                </div>
+            </div>
+            @foreach (var item in Model)
+            {
+
+                <div id=@(item.Id+"cart_item")>
+                    <input type="hidden" value="@item.Id" />
+                    <div class="cart_img">
+                        <a asp-controller="product" asp-action="details" asp-route-id="@item.Id"><img src="~/assets/img/product/@item.MainImageUrl" alt=""></a>
+                    </div>
+                    <div class="cart_info">
+                        <a asp-controller="product" asp-action="details" asp-route-id="@item.Id">@item.Name</a>
+
+                        <span class="quantity">Qty: @item.Count</span>
+                        <span class="price_cart">$@item.Price</span>
+
+                    </div>
+                    
+                </div>
+            }
+
+            <div class="cart_total">
+                <span>Subtotal:</span>
+                <span>@totalPrice</span>
+            </div>
+            <div class="mini_cart_footer">
+                <div class="cart_button view_cart">
+                    <a asp-controller="basket" asp-action="index">View cart</a>
+                </div>
+                <div class="cart_button checkout">
+                    <a class="active" asp-controller="order" asp-action="OrderProduct">Checkout</a>
+                </div>
+
+            </div>
+
+        </div>
+        <!--mini cart end-->
+    </div>
+}
+else
+{
+    <div class="cart_link">
+        <a href="#"><i class="ion-android-cart"></i><span class="cart_text_quantity"> $0</span> <i class="fa fa-angle-down"></i></a>
+        <span class="cart_quantity">0</span>
+        <!--mini cart-->
+        <div class="mini_cart">
+            <div class="cart_close">
+                <div class="cart_text">
+                    <h3>cart</h3>
+                </div>
+                <div class="mini_cart_close">
+                    <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
+                </div>
+            </div>
+           
+
+                <div class="cart_item">
+
+                    <div class="alert alert-danger" role="alert">
+                       Your Cart Is Empty <br/>
+                        <a asp-controller="product" asp-action="index">Let`s Start Shop</a>
+                    </div>
+
+                </div>
+         
+
+            <div class="cart_total">
+                <span>Subtotal:</span>
+                <span>0</span>
+            </div>
+            <div class="mini_cart_footer">
+                <div class="cart_button view_cart">
+                    <a href="cart.html">View cart</a>
+                </div>
+                
+
+            </div>
+
+        </div>
+        <!--mini cart end-->
+    </div>
+
+}
+
+@section Scripts
+{
+<script src="~/assets/js/custom.js" asp-append-version="true"></script>
+}

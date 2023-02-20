@@ -39,6 +39,8 @@ namespace WatchECommerce.Controllers
                     .Include(x => x.BasketProducts)
                     .ThenInclude(x => x.Product)
                     .FirstOrDefaultAsync();
+                if(basket?.BasketProducts is not null)
+                {
 
                 foreach (var item in basket.BasketProducts)
                 {
@@ -46,14 +48,25 @@ namespace WatchECommerce.Controllers
                         .Where(p => p.Id == item.Product.Id && !p.IsDeleted)
                         .FirstOrDefault();
 
+                    var finalPrice = default(decimal);
+
+                    if (product.DiscountPrice > 0)
+                    {
+                        finalPrice = (decimal)product.Price - (decimal)product.DiscountPrice;
+                    }
+                    else
+                    {
+                        finalPrice = (decimal)product.Price;
+                    }
                     model.Add(new BasketProductViewModel
                     {
                         Id = product.Id,
                         Name = product.Name,
-                        Price = product.Price,
+                        Price = finalPrice,
                         Count = item.Count,
                         MainImageUrl = product.MainImageUrl,
                     });
+                }
                 }
             }
             else
@@ -67,12 +80,22 @@ namespace WatchECommerce.Controllers
                         var product = _dbContext.Products
                             .Where(p => p.Id == item.Id && !p.IsDeleted)
                             .FirstOrDefault();
+                        var finalPrice = default(decimal);
+
+                        if (product.DiscountPrice > 0)
+                        {
+                            finalPrice = (decimal)product.Price - (decimal)product.DiscountPrice;
+                        }
+                        else
+                        {
+                            finalPrice = (decimal)product.Price;
+                        }
 
                         model.Add(new BasketProductViewModel
                         {
                             Id = product.Id,
                             Name = product.Name,
-                            Price = product.Price,
+                            Price = finalPrice,
                             Count = item.Count,
                             MainImageUrl = product.MainImageUrl
                         });

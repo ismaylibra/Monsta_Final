@@ -1,4 +1,6 @@
 ﻿@model Product
+@inject Watch.BLL.Services.LayoutService layoutService
+
 @{
     var product = Model;
     var productImages = Model.ProductImages;
@@ -86,15 +88,21 @@
                         </div>
 
                         <div class="product_variant quantity">
-                            <label>quantity</label>
-                            <input min="1" max="100" value="1" type="number">
-                            <button asp-controller="basket" asp-action="AddToBasket" asp-route-id="@product.Id" class="button" type="submit">add to cart</button>
+                            <input type="hidden" value="@product.Id" />
+                            <a id="add-product-to-cart" class="addtocart-btn button"  >
+                                
+                                add to cart
+                                </a>
                              
                         </div>
                         <div class=" product_d_action">
                             <ul>
-                                <li><a href="#" title="Add to wishlist">+ Add to Wishlist</a></li>
-                                <li><a href="#" title="Add to wishlist">+ Compare</a></li>
+                                <li>
+                                    <a id="productLink" href="#" title="Add to wishlist">
+                                       <input type="hidden" id="productId" value="@product.Id">
+                                       <span id=@("favorite" + product.Id)>Add To Wishlist</span>
+                                        </a>
+                                        </li>
                             </ul>
                         </div>
                         <div class="product_meta">
@@ -109,13 +117,12 @@
 
                     </form>
                     <div class="priduct_social">
-                        <ul>
-                            <li><a href="#" title="facebook"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#" title="twitter"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#" title="pinterest"><i class="fa fa-pinterest"></i></a></li>
-                            <li><a href="#" title="google +"><i class="fa fa-google-plus"></i></a></li>
-                            <li><a href="#" title="linkedin"><i class="fa fa-linkedin"></i></a></li>
-                        </ul>
+                         <ul>
+                                <li class="facebook"><a href="@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="fburl")?.Value" target="_blank">@Html.Raw(@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="fbicon")?.Value)</a></li>
+                                <li class="twitter"><a href="@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="yturl")?.Value" target="_blank">@Html.Raw(@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="yticon")?.Value)</a></li>
+                                <li class="pinterest"><a href="@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="g+url")?.Value" target="_blank">@Html.Raw(@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="g+icon")?.Value)</a></li>
+                                <li class="google-plus"><a href="@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="githuburl")?.Value" target="_blank">@Html.Raw(@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="githubicon")?.Value)</a></li>
+                            </ul>
                     </div>
 
                 </div>
@@ -135,9 +142,7 @@
                             <li>
                                 <a class="active" data-bs-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="false">Description</a>
                             </li>
-                            <li>
-                                <a data-bs-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews (1)</a>
-                            </li>
+                            
                         </ul>
                     </div>
                     <div class="tab-content">
@@ -147,66 +152,7 @@
                             </div>
                         </div>
 
-                        <div class="tab-pane fade" id="reviews" role="tabpanel">
-                            <div class="reviews_wrapper">
-                                <h2>1 review for Donec eu furniture</h2>
-                                <div class="reviews_comment_box">
-                                    <div class="comment_thmb">
-                                        <img src="assets/img/blog/comment2.jpg" alt="">
-                                    </div>
-                                    <div class="comment_text">
-                                        <div class="reviews_meta">
-                                            <div class="star_rating">
-                                                <ul>
-                                                    <li><a href="#"><i class="ion-ios-star"></i></a></li>
-                                                    <li><a href="#"><i class="ion-ios-star"></i></a></li>
-                                                    <li><a href="#"><i class="ion-ios-star"></i></a></li>
-                                                    <li><a href="#"><i class="ion-ios-star"></i></a></li>
-                                                    <li><a href="#"><i class="ion-ios-star"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <p><strong>admin </strong>- September 12, 2018</p>
-                                            <span>roadthemes</span>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="comment_title">
-                                    <h2>Add a review </h2>
-                                    <p>Your email address will not be published.  Required fields are marked </p>
-                                </div>
-                                <div class="product_ratting mb-10">
-                                    <h3>Your rating</h3>
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="product_review_form">
-                                    <form action="#">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <label for="review_comment">Your review </label>
-                                                <textarea name="comment" id="review_comment"></textarea>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6">
-                                                <label for="author">Name</label>
-                                                <input id="author" type="text">
-
-                                            </div>
-                                            <div class="col-lg-6 col-md-6">
-                                                <label for="email">Email </label>
-                                                <input id="email" type="text">
-                                            </div>
-                                        </div>
-                                        <button type="submit">Submit</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                       
                     </div>
                 </div>
             </div>
@@ -254,6 +200,7 @@
     <script src="~/assets/js/jqquery.ripples.js"></script>
     <script src="~/assets/js/jquery.cookie.js"></script>
     <script src="~/assets/js/search.js" asp-append-version="true"></script>
+    <script src="~/assets/js/basket.js asp-append-version="true"></script>
 
     <script src="~/assets/js/wishlist.js" asp-append-version="true"></script>
 
@@ -261,4 +208,6 @@
 
     <!-- Main JS -->
     <script src="~/assets/js/main.js"></script>
+
+
     }

@@ -36,6 +36,9 @@ namespace Watch.DAL.DAL
         public DbSet<ContactMessage> ContactMessages { get; set; }
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<BasketProduct> BasketProducts { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet <OrderItem> OrderItems { get; set; }
+        public DbSet<AdvertisementBanner> AdvertisementBanners { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

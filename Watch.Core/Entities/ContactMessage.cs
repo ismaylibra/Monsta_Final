@@ -13,5 +13,6 @@ namespace Watch.Core.Entities
         public string? Subject { get; set; }
         public string Message { get; set; }
         public bool IsRead { get; set; }
+        public string? ProfileImage { get; set; }
     }
 }

@@ -23,6 +23,7 @@ namespace Watch.Core.Entities
         public List<CategoryProduct> CategoryProducts { get; set; }
         public List<ProductColor> ProductColors { get; set; }
         public List<WishListProduct> WishListProducts { get; set; }
+        public bool IsLike { get; set; }
 
 
 

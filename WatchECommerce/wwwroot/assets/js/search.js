@@ -5,7 +5,7 @@ if (searchInput) {
         let text = this.value
         let courseList = document.querySelector("#product-list")
 
-        fetch('Product/Search?searchText=' + text)
+        fetch('/Product/Search?searchText=' + text)
             .then((response) => response.text())
             .then((data) => {
                 console.log(data)

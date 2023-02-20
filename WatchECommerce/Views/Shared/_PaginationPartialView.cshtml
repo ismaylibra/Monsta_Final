@@ -1,0 +1,97 @@
+﻿@{
+    string controller = this.ViewContext.RouteData.Values["controller"].ToString().ToLower();
+    string action = this.ViewContext.RouteData.Values["action"].ToString().ToLower();
+}
+
+<!--blog pagination area start-->
+
+<div class="pagination">
+    <ul>
+        @if (ViewBag.CurrentPage > 2)
+        {
+            <li  title="1">
+                <a asp-controller="@controller" asp-action="@action"
+               asp-route-page="1">
+                    First page
+                </a>
+            </li>
+        }
+        @if (ViewBag.CurrentPage > 1)
+        {
+            <li  title="@((ViewBag.CurrentPage == 2) ? " First page" :
+                                (ViewBag.CurrentPage - 1))">
+                <a asp-controller="@controller" asp-action="@action"
+               asp-route-page="@(ViewBag.CurrentPage - 1)">
+                    <i class="fa-solid fa-angles-left"></i>
+                </a>
+            </li>
+        }
+        @if (ViewBag.CurrentPage == ViewBag.PageCount && ViewBag.CurrentPage > 2)
+        {
+            <li>
+                <a asp-controller="@controller" asp-action="@action"
+               asp-route-page="@(ViewBag.CurrentPage - 2)">
+                    @(ViewBag.CurrentPage - 2)
+                </a>
+            </li>
+        }
+
+        @if (ViewBag.CurrentPage > 1)
+        {
+            <li>
+                <a  asp-controller="@controller" asp-action="@action"
+               asp-route-page="@(ViewBag.CurrentPage - 1)">
+                    @(ViewBag.CurrentPage - 1)
+                </a>
+            </li>
+        }
+        <li >
+            <a class="page-link" href="javascript:void(0)">
+                @(ViewBag.CurrentPage)
+            </a>
+        </li>
+
+        @if (ViewBag.CurrentPage < ViewBag.PageCount)
+        {
+            <li >
+                <a  asp-controller="@controller" asp-action="@action"
+               asp-route-page="@(ViewBag.CurrentPage + 1)">
+                    @(ViewBag.CurrentPage + 1)
+                </a>
+            </li>
+        }
+        @if (ViewBag.CurrentPage == 1 && (ViewBag.CurrentPage + 2) <= ViewBag.PageCount)
+        {
+            <li >
+                <a  asp-controller="@controller" asp-action="@action"
+               asp-route-page="@(ViewBag.CurrentPage + 2)">
+                    @(ViewBag.CurrentPage + 2)
+                </a>
+            </li>
+        }
+        @if (ViewBag.CurrentPage < ViewBag.PageCount)
+        {
+            <li 
+            title="@((ViewBag.CurrentPage == ViewBag.PageCount - 1) ? " Next" :
+                                        (ViewBag.CurrentPage + 1))">
+                <a  asp-controller="@controller" asp-action="@action"
+               asp-route-page="@(ViewBag.CurrentPage + 1)">
+                    <i class="fa-solid fa-angles-right"></i>
+                </a>
+            </li>
+        }
+
+        @if (ViewBag.CurrentPage < ViewBag.PageCount - 1)
+        {
+            <li 
+            title="@ViewBag.PageCount">
+                <a  asp-controller="@controller" asp-action="@action"
+               asp-route-page="@ViewBag.PageCount">
+                    Last
+                </a>
+            </li>
+        }
+    </ul>
+</div>
+
+<!--blog pagination area end-->

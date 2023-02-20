@@ -106,11 +106,10 @@
                         <div class="Offcanvas_footer">
                             <span><a href="#"><i class="fa fa-envelope-o"></i> demo@example.com</a></span>
                             <ul>
-                                <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li class="pinterest"><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
-                                <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                <li class="facebook"><a href="@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="fburl")?.Value" target="_blank">@Html.Raw(@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="fbicon")?.Value)</a></li>
+                                <li class="twitter"><a href="@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="yturl")?.Value" target="_blank">@Html.Raw(@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="yticon")?.Value)</a></li>
+                                <li class="pinterest"><a href="@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="g+url")?.Value" target="_blank">@Html.Raw(@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="g+icon")?.Value)</a></li>
+                                <li class="google-plus"><a href="@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="githuburl")?.Value" target="_blank">@Html.Raw(@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="githubicon")?.Value)</a></li>
                             </ul>
                         </div>
                     </div>
@@ -129,11 +128,10 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="social_icone">
                             <ul>
-                                <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="ion-social-rss"></i></a></li>
+                                <li class="facebook"><a href="@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="fburl")?.Value" target="_blank">@Html.Raw(@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="fbicon")?.Value)</a></li>
+                                <li class="twitter"><a href="@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="yturl")?.Value" target="_blank">@Html.Raw(@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="yticon")?.Value)</a></li>
+                                <li class="pinterest"><a href="@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="g+url")?.Value" target="_blank">@Html.Raw(@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="g+icon")?.Value)</a></li>
+                                <li class="google-plus"><a href="@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="githuburl")?.Value" target="_blank">@Html.Raw(@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="githubicon")?.Value)</a></li>
                             </ul>
                         </div>
                     </div>
@@ -218,7 +216,9 @@
                             <div class="wishlist_btn">
                                 <a asp-controller="wishlist" asp-action="index"><i class="ion-heart"></i></a>
                             </div>
-                            <div class="cart_link">
+                            @await Component.InvokeAsync("CartInfo")
+
+                        @*    <div class="cart_link">
                                 <a href="#"><i class="ion-android-cart"></i><span class="cart_text_quantity"> $138.00</span> <i class="fa fa-angle-down"></i></a>
                                 <span class="cart_quantity">2</span>
                                 <!--mini cart-->
@@ -275,7 +275,7 @@
 
                                 </div>
                                 <!--mini cart end-->
-                            </div>
+                            </div>*@
                         </div>
                     </div>
                 </div>
@@ -376,48 +376,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 col-sm-7">
-                        <div class="widgets_container product_widget">
-                            <h3>Top Rated Products</h3>
-                            <div class="simple_product">
-                                <div class="simple_product_items">
-                                    <div class="simple_product_thumb">
-                                        <a href="#"><img src="~/assets/img/s-product/product3.jpg" alt=""></a>
-                                    </div>
-                                    <div class="simple_product_content">
-                                        <div class="tag_cate">
-                                            <a href="#">Clothing,</a>
-                                            <a href="#">Potato chips</a>
-                                        </div>
-                                        <div class="product_name">
-                                            <h3><a href="#">Donec eu animal</a></h3>
-                                        </div>
-                                        <div class="product_price">
-                                            <span class="old_price">$86.00</span>
-                                            <span class="current_price">$70.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="simple_product_items">
-                                    <div class="simple_product_thumb">
-                                        <a href="#"><img src="~/assets/img/s-product/product4.jpg" alt=""></a>
-                                    </div>
-                                    <div class="simple_product_content">
-                                        <div class="tag_cate">
-                                            <a href="#">Women</a>
-                                        </div>
-                                        <div class="product_name">
-                                            <h3><a href="#">Dummy animal</a></h3>
-                                        </div>
-                                        <div class="product_price">
-                                            <span class="old_price">$74.00</span>
-                                            <span class="current_price">$69.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @await Component.InvokeAsync("FooterProduct")
                 </div>
             </div>
             <div class="footer_middel">
@@ -473,6 +432,7 @@
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
      <script src="~/assets/js/search.js" asp-append-version="true"></script>
     <script src="~/assets/js/wishlist.js" asp-append-version="true"></script>
+
     <script src="~/assets/js/basket.js" asp-append-version="true"></script>
 
     <!-- Main JS -->

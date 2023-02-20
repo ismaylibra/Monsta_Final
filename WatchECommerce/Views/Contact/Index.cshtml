@@ -1,10 +1,11 @@
 ﻿@model ContactViewModel
+@inject Watch.BLL.Services.LayoutService layoutService
 @{
     var contactMessage = Model.ContactMessage;
-} 
+}
 <style>
     .contact_message h3 {
-     color:#c09578;
+        color: #c09578;
     }
 
     .contact_message p {
@@ -14,13 +15,14 @@
     .contact_message label {
         color: #ebebeb;
     }
+
     .contact_message button {
         background-color: #c09578;
     }
 
-    .contact_message button:hover {
+        .contact_message button:hover {
             background-color: #5a5a5a;
-    }
+        }
 
 </style>
 <!--breadcrumbs area start-->
@@ -45,9 +47,9 @@
 <div class="contact_map">
     <div class="container">
         <div class="row">
-            <div class="col-12">
-                <div class="map-area">
-                    <div id="googleMap"></div>
+            <div class="col-12 col-lg-12">
+                <div class="map-area text-center">
+                    @Html.Raw(@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="googlemap")?.Value)
                 </div>
             </div>
         </div>
@@ -63,21 +65,22 @@
                     <h3>contact us</h3>
                     <p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram anteposuerit litterarum formas human. qui sequitur mutationem consuetudium lectorum. Mirum est notare quam</p>
                     <ul>
-                        <li><i class="fa fa-fax"></i>  Address : Your address goes here.</li>
-                        <li><i class="fa fa-phone"></i> <a href="#">demo@example.com</a></li>
-                        <li><i class="fa fa-envelope-o"></i> 0123456789</li>
+                        <li><i class="fa fa-fax"></i>  Address : @layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="companyaddress")?.Value</li>
+                        <li><i class="fa fa-phone"></i> <a href="#">@layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="companyemail")?.Value</a></li>
+                        <li><i class="fa fa-envelope-o"></i> @layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="phonenumber")?.Value</li>
                     </ul>
                 </div>
             </div>
             <div class="col-lg-6 col-md-12">
                 <div class="contact_message form">
                     <h3>Tell us your project</h3>
-                    <form method="POST"  asp-action="SendMessage">
-                       
-                        @if(User.Identity.IsAuthenticated)
+                    <form method="POST" asp-action="SendMessage">
+
+                        @if (User.Identity.IsAuthenticated)
                         {
                             <p>
                                 <label asp-for="ContactMessage.Name"> Your Name (required)</label>
+                               <input asp-for="ContactMessage.ImageUrl" type="hidden" placeholder="Name" value="@contactMessage.ImageUrl" >
 
                                 <input asp-for="ContactMessage.Name" placeholder="Name *" value="@contactMessage.Name" readonly>
                             </p>
@@ -91,19 +94,19 @@
                             <p>
                                 <label asp-for="ContactMessage.Name"> Your Name (required)</label>
 
-                                <input asp-for="ContactMessage.Name" placeholder="Name *"  >
+                                <input asp-for="ContactMessage.Name" placeholder="Name *">
                             </p>
                             <p>
                                 <label asp-for="ContactMessage.Email">  Your Email (required)</label>
                                 <input asp-for="ContactMessage.Email" placeholder="Email *">
                             </p>
                         }
-                           
-                   
-                       
+
+
+
                         <p>
                             <label asp-for="ContactMessage.Subject">  Subject</label>
-                            <input asp-for="ContactMessage.Subject" placeholder="Subject *" >
+                            <input asp-for="ContactMessage.Subject" placeholder="Subject *">
                         </p>
                         <div class="contact_textarea">
                             <label asp-for="ContactMessage.Message">  Your Message</label>

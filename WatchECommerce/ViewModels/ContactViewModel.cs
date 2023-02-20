@@ -11,6 +11,7 @@ namespace WatchECommerce.ViewModels
         public class ContactMessageViewModel
         {
             public string Name { get; set; }
+            public string? ImageUrl { get; set; }
             public string? Subject { get; set; }
             [EmailAddress]
             public string Email { get; set; }

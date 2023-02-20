@@ -1,0 +1,26 @@
+﻿@model ContactMessageReadViewModel
+@{
+    ViewData["Title"] = "Read";
+    var message = Model.ContactMessage;
+}
+<div class="text-center">
+
+    <h3>
+        User: <br /><br />
+    <img src="~/assets/img/user/@message.ProfileImage" class="rounded-circle text-capitalzie" style="width:150px; height:150px;" />
+        <br />
+    @message.Name
+    </h3>
+    <br />
+    <hr />
+    <br />
+    <h3 class="text-capitalize">
+        Subject:  <br /><br />
+        @message.Subject
+        </h3>
+    <h3 class="text-capitalize">
+        Message:  <br /><br />
+        @message.Message
+    </h3>
+       
+</div>

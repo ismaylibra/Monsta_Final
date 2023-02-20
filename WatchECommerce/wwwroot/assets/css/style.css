@@ -8216,7 +8216,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     }
 
         .widget_list.Featured_p .Featured_info h3 a {
-            color: #242424;
+            color: #c09578;
         }
 
             .widget_list.Featured_p .Featured_info h3 a:hover {
@@ -8301,7 +8301,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 }
 
 .page_amount p {
-    color: #5a5a5a;
+    color: #fff;
 }
 
 @media only screen and (max-width: 767px) {
@@ -9667,7 +9667,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
                 width: 60px;
                 height: 40px;
                 padding: 0 5px 0 10px;
-                background: none;
+               
                 border: 1px solid #ebebeb;
             }
 
@@ -9809,7 +9809,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 }
 
     .cart_subtotal p {
-        color: #212121;
+        color: #ebebeb;
         font-weight: 600;
         font-size: 14px;
     }
@@ -10334,6 +10334,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 
 .contact_message ul li {
     padding: 13px 0;
+    color:#ffff;
     border-top: 1px solid #ebebeb;
 }
 
@@ -10350,7 +10351,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     }
 
         .contact_message ul li a:hover {
-            color: #212121;
+            color: #fff;
         }
 
 .contact_message label {
@@ -10388,7 +10389,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     text-transform: capitalize;
     border: none;
     background: #c09578;
-    color: #09578;
+    color: #fff;
     cursor: pointer;
     -webkit-transition: 0.3s;
     transition: 0.3s;

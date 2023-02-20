@@ -72,69 +72,7 @@
                             </a>
                         </li>
 
-                        <li class="dropdown notifications-menu">
-                            <a href="#" class="waves-effect waves-light dropdown-toggle" data-bs-toggle="dropdown" title="Notifications">
-                                <i data-feather="bell"></i>
-                            </a>
-                            <ul class="dropdown-menu animated bounceIn">
-
-                                <li class="header">
-                                    <div class="p-20">
-                                        <div class="flexbox">
-                                            <div>
-                                                <h4 class="mb-0 mt-0">Notifications</h4>
-                                            </div>
-                                            <div>
-                                                <a href="#" class="text-danger">Clear All</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <ul class="menu sm-scrol">
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-users text-info"></i> Curabitur id eros quis nunc suscipit blandit.
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-warning text-warning"></i> Duis malesuada justo eu sapien elementum, in semper diam posuere.
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-users text-danger"></i> Donec at nisi sit amet tortor commodo porttitor pretium a erat.
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-shopping-cart text-success"></i> In gravida mauris et nisi
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-user text-danger"></i> Praesent eu lacus in libero dictum fermentum.
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-user text-primary"></i> Nunc fringilla lorem
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-user text-success"></i> Nullam euismod dolor ut quam interdum, at scelerisque ipsum imperdiet.
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="footer">
-                                    <a href="#">View all</a>
-                                </li>
-                            </ul>
-                        </li>
+                        @await Component.InvokeAsync("ContactMessage")
                         <li class="dropdown user user-menu">
                             <a href="#" class="waves-effect waves-light dropdown-toggle" data-bs-toggle="dropdown" title="User">
                                 <i class="icon-User"><span class="path1"></span><span class="path2"></span></i>
@@ -176,7 +114,7 @@
                         <li><a href="#" data-bs-toggle="tooltip" title="Search"><i data-feather="search"></i></a></li>
                         <li><a href="#" data-bs-toggle="tooltip" title="Notification"><i data-feather="bell"></i></a></li>
                         <li><a href="#" data-bs-toggle="tooltip" title="Chat"><i data-feather="message-square"></i></a></li>
-                        <li><a href="#" data-bs-toggle="tooltip" title="Logout"><i data-feather="log-out"></i></a></li>
+                        <li><a asp-controller="account" asp-action="logout" asp-area="default" data-bs-toggle="tooltip" title="Logout"><i data-feather="log-out"></i></a></li>
                     </ul>
                 </div>
                 <div class="multinav">
@@ -195,23 +133,7 @@
                                     <li><a asp-area="default" asp-controller="home" asp-action="index"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Home Page Of Site</a></li>
                                 </ul>
                             </li>
-                            <li class="treeview">
-                                <a href="#">
-                                    <i class="icon-Briefcase"><span class="path1"></span><span class="path2"></span></i>
-                                    <span>Job Board Pages</span>
-                                    <span class="pull-right-container">
-                                        <i class="fa fa-angle-right pull-right"></i>
-                                    </span>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li><a href="jobs.html"><i class="icon-Briefcase"><span class="path1"></span><span class="path2"></span></i>Jobs</a></li>
-                                    <li><a href="applications.html"><i class="icon-File"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>Applications</a></li>
-                                    <li><a href="contact_userlist_grid.html"><i class="icon-Add-user"><span class="path1"></span><span class="path2"></span></i>Team</a></li>
-                                    <li><a href="extra_profile.html"><i class="icon-User"><span class="path1"></span><span class="path2"></span></i>Profile</a></li>
-                                    <li><a href="billing.html"><i class="icon-Credit-card"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>Billing</a></li>
-                                    <li><a href="extra_app_ticket.html"><i class="icon-Chat"><span class="path1"></span><span class="path2"></span></i>Support</a></li>
-                                </ul>
-                            </li>
+                          
                             <li class="header">Apps & Widgets</li>
                             <li class="treeview">
                                 <a href="#">
@@ -222,41 +144,7 @@
                                     </span>
                                 </a>
                                 <ul class="treeview-menu">
-                                    <li class="treeview">
-                                        <a href="#">
-                                            <i span class="icon-Layout-grid"><span class="path1"></span><span class="path2"></span></i>
-                                            <span>Apps</span>
-                                            <span class="pull-right-container">
-                                                <i class="fa fa-angle-right pull-right"></i>
-                                            </span>
-                                        </a>
-                                        <ul class="treeview-menu">
-                                            <li><a href="mailbox.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Mailbox</a></li>
-                                            <li><a href="extra_calendar.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Calendar</a></li>
-                                            <li><a href="contact_app.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Contact List</a></li>
-                                            <li><a href="contact_app_chat.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Chat</a></li>
-                                            <li><a href="extra_taskboard.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Todo</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="treeview">
-                                        <a href="#">
-                                            <i class="icon-Library"><span class="path1"></span><span class="path2"></span></i>
-                                            <span>Widgets</span>
-                                            <span class="pull-right-container">
-                                                <i class="fa fa-angle-right pull-right"></i>
-                                            </span>
-                                        </a>
-                                        <ul class="treeview-menu">
-                                            <li><a href="widgets_blog.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Blog</a></li>
-                                            <li><a href="widgets_chart.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Chart</a></li>
-                                            <li><a href="widgets_list.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>List</a></li>
-                                            <li><a href="widgets_social.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Social</a></li>
-                                            <li><a href="widgets_statistic.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Statistic</a></li>
-                                            <li><a href="widgets_weather.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Weather</a></li>
-                                            <li><a href="widgets.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Widgets</a></li>
-                                            <li><a href="email_index.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Emails</a></li>
-                                        </ul>
-                                    </li>
+                                   
                                     <li class="treeview">
                                         <a href="#">
                                             <i class="icon-Cart"><span class="path1"></span><span class="path2"></span></i>
@@ -269,8 +157,7 @@
                                             <li><a asp-controller="product" asp-action="index"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Products</a></li>
                                             <li><a asp-controller="color" asp-action="index" ><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Products Color</a></li>
                                             <li><a asp-controller="product" asp-action="create"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Products Adding</a></li>
-                                            <li><a href="ecommerce_orders.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product Orders</a></li>
-                                            <li><a href="ecommerce_checkout.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Products Checkout</a></li>
+                                            <li><a asp-controller="order" asp-action="index"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product Orders</a></li>
                                         </ul>
                                     </li>
                                     <li class="treeview">
@@ -304,14 +191,7 @@
                                     <li><a asp-controller="WhyUsShortInfo" asp-action="index"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Why Us Short Info</a></li>
                                     <li><a asp-controller="AboutWorkers" asp-action="index"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>About Workers</a></li>
                                     <li><a asp-controller="blog" asp-action="index"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Portfolio Page</a></li>
-                                    <li><a href="sample_custom_scroll.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Custom Scrolls</a></li>
-                                    <li><a href="sample_gallery.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Gallery</a></li>
-                                    <li><a href="sample_lightbox.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Lightbox Popup</a></li>
-                                    <li><a href="sample_pricing.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Pricing</a></li>
-                                    <li><a href="invoice.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Invoice</a></li>
-                                    <li><a href="invoicelist.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Invoice List</a></li>
-                                    <li><a href="contact_userlist.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Userlist</a></li>
-                                    <li><a href="sample_faq.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>FAQs</a></li>
+                                    
                                 </ul>
                             </li>
 
@@ -363,6 +243,18 @@
                                             <li><a asp-controller="blog" asp-action="create"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Create Blog</a></li>
                                         </ul>
                                     </li>
+                                      <li class="treeview">
+                                        <a href="#">
+                                            <i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Advertisement Banner
+                                            <span class="pull-right-container">
+                                                <i class="fa fa-angle-right pull-right"></i>
+                                            </span>
+                                        </a>
+                                        <ul class="treeview-menu">
+                                            <li><a asp-controller="advertisementBanner" asp-action="index"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Advertisement List</a></li>
+                                            <li><a asp-controller="advertisementBanner" asp-action="create"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Create</a></li>
+                                        </ul>
+                                    </li>
                                     <li class="treeview">
                                         <a href="#">
                                             <i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Icons
@@ -381,7 +273,6 @@
                                             <li><a href="icons_weather.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Weather Icons</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="ui_grid.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Grid System</a></li>
                                 </ul>
                             </li>
                             <li class="treeview">
@@ -434,94 +325,9 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="treeview">
-                                <a href="#">
-                                    <i class="icon-Chart-pie"><span class="path1"></span><span class="path2"></span></i>
-                                    <span>Charts</span>
-                                    <span class="pull-right-container">
-                                        <i class="fa fa-angle-right pull-right"></i>
-                                    </span>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li class="treeview">
-                                        <a href="#">
-                                            <i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>
-                                            <span>Basic Charts</span>
-                                            <span class="pull-right-container">
-                                                <i class="fa fa-angle-right pull-right"></i>
-                                            </span>
-                                        </a>
-                                        <ul class="treeview-menu">
-                                            <li><a href="charts_chartjs.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>ChartJS</a></li>
-                                            <li><a href="charts_flot.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Flot</a></li>
-                                            <li><a href="charts_inline.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Inline charts</a></li>
-                                            <li><a href="charts_morris.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Morris</a></li>
-                                            <li><a href="charts_peity.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Peity</a></li>
-                                            <li><a href="charts_chartist.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Chartist</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="treeview">
-                                        <a href="#">
-                                            <i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>
-                                            <span>C3 Charts</span>
-                                            <span class="pull-right-container">
-                                                <i class="fa fa-angle-right pull-right"></i>
-                                            </span>
-                                        </a>
-                                        <ul class="treeview-menu">
-                                            <li><a href="charts_c3_axis.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Axis Chart</a></li>
-                                            <li><a href="charts_c3_bar.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Bar Chart</a></li>
-                                            <li><a href="charts_c3_data.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Data Chart</a></li>
-                                            <li><a href="charts_c3_line.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Line Chart</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="treeview">
-                                        <a href="#">
-                                            <i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>
-                                            <span>Echarts</span>
-                                            <span class="pull-right-container">
-                                                <i class="fa fa-angle-right pull-right"></i>
-                                            </span>
-                                        </a>
-                                        <ul class="treeview-menu">
-                                            <li><a href="charts_echarts_basic.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Basic Charts</a></li>
-                                            <li><a href="charts_echarts_bar.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Bar Chart</a></li>
-                                            <li><a href="charts_echarts_pie_doughnut.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Pie & Doughnut Chart</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
+                           
 
-                            <li class="header">LOGIN & ERROR </li>
-                            <li class="treeview">
-                                <a href="#">
-                                    <i class="icon-Chat-locked"><span class="path1"></span><span class="path2"></span></i>
-                                    <span>Authentication</span>
-                                    <span class="pull-right-container">
-                                        <i class="fa fa-angle-right pull-right"></i>
-                                    </span>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li><a href="auth_login.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Login</a></li>
-                                    <li><a href="auth_register.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Register</a></li>
-                                    <li><a href="auth_lockscreen.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Lockscreen</a></li>
-                                    <li><a href="auth_user_pass.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Recover password</a></li>
-                                </ul>
-                            </li>
-                            <li class="treeview">
-                                <a href="#">
-                                    <i class="icon-Chat-check"><span class="path1"></span><span class="path2"></span></i>
-                                    <span>Miscellaneous</span>
-                                    <span class="pull-right-container">
-                                        <i class="fa fa-angle-right pull-right"></i>
-                                    </span>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li><a href="error_404.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Error 404</a></li>
-                                    <li><a href="error_500.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Error 500</a></li>
-                                    <li><a href="error_maintenance.html"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Maintenance</a></li>
-                                </ul>
-                            </li>
+                          
                         </ul>
                     </div>
                 </div>

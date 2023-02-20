@@ -1,0 +1,114 @@
+﻿@model Order
+
+@{
+	var finalPrice = default(decimal);
+	foreach (var item in Model.OrderItems)
+	{
+		if(item.Product.DiscountPrice > 0){
+			finalPrice = (decimal)item.Product.Price - (decimal)item.Product.DiscountPrice;
+		}
+		else{
+			finalPrice = item.Product.Price;
+		}
+	}
+}
+<div class="content-wrapper">
+	  <div class="container-full">
+		<!-- Content Header (Page header) -->
+		<div class="content-header">
+			<div class="d-flex align-items-center">
+				<div class="me-auto">
+					<h3 class="page-title">Checkout</h3>
+					<div class="d-inline-block align-items-center">
+						<nav>
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="#"><i class="mdi mdi-home-outline"></i></a></li>
+								<li class="breadcrumb-item" aria-current="page">e-Commerce</li>
+								<li class="breadcrumb-item active" aria-current="page">Checkout</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+
+		<!-- Main content -->
+		<section class="content">
+
+		  <div class="row">
+			<div class="col-12">
+				<div class="box">
+				  <div class="box-header">
+					<h4 class="box-title">Product Summary</h4>
+				  </div>
+				  <div class="box-body">
+					<div class="table-responsive">
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>Photo</th>
+									<th>Product</th>
+									<th>Quantity</th>
+									<th class="w-200">Price</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var item in Model.OrderItems)
+								{
+									
+								<tr>
+									<td><img src="~/assets/img/product/@item.Product.MainImageUrl" alt="" width="40"></td>
+									<td>@item.Product.Name</td>
+									<td>@item.Count</td>
+									<td>$@finalPrice</td>
+								</tr>
+								}
+								
+							</tbody>
+						</table>
+					</div>
+
+					<hr>
+					<hr>
+					<!-- Nav tabs -->
+
+					<!-- Tab panes -->
+				  </div>
+				</div>
+			</div>
+		</div>
+
+		</section>
+			<div class="col-12">
+				<div class="card">
+					<div class="card-header">
+						<div class="card-title"><i class="fas fa-info-circle"></i> Order Status</div>
+
+					</div>
+					<div class="col-6">
+						 <form method="post" asp-action="OrderStatus">
+						<div class="input-box form-group">
+							<input type="hidden" asp-for="@Model.Id" />
+							<div class="row">
+								<label for="input-order-status" class="col-md-3 control-label">Order Status</label>
+								<div class="col-md-9">
+									<select asp-for="Status" class="form-control">
+										<option disabled selected="selected">Select Status</option>
+										<option value="true">Accept Order</option>
+										<option value="false">Cancele Order</option>								
+									</select>
+								</div>
+								<div class="col-6 text-right mt-4">
+									<button type="submit" class="btn btn-primary btn-round">Add History</button>
+								</div>
+							</div>
+						</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+		<!-- /.content -->
+	  </div>
+  </div>

@@ -1,0 +1,47 @@
+﻿@model List<AdvertisementBanner>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 grid-margin stretch-card ">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Advertisement Banner</h4>
+                    <div class="table-responsive">
+                        <table class="table  ">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Title</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <img style="border-radius:0px; object-fit:contain; height:100px; width:100px;" src="~/assets/img/bg/@item.ImageUrl" alt="image">
+                                        </td>
+                                        <td>@item.TopTitle</td>
+                                        <td>
+
+                                            <form asp-action="delete" method="post" class="form-sample" asp-route-id="@item.Id">
+                                                <a class="btn btn-success" asp-action="update" asp-route-id="@item.Id"><i class="fa-regular fa-pen-to-square"></i></a>
+                                                <button type="submit" class="btn btn-danger"><i class="fa-regular fa-trash-can"></i></button>
+                                            </form>
+                                        </td>
+
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

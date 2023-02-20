@@ -166,16 +166,17 @@ namespace WatchECommerce.Controllers
 
                 return View();
             }
-
+          
+           
             return RedirectToAction("Index","Home");
+           
+            
         }
         public IActionResult Index()
         {
             return View();
         }
 
-
-        
         public IActionResult AccessDenied()
         {
             return RedirectToAction("Login", "Account");
@@ -266,7 +267,6 @@ namespace WatchECommerce.Controllers
         {
             return View();
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]

@@ -16,6 +16,7 @@ namespace Watch.BLL.Data
         public static string ProductMainImagePath;
         public static string AboutPath;
         public static string UserImagePath;
+        public static string AdvertisementBannerPath;
 
 
 
